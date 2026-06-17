@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<title>EduPath India — College Admission Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--sf:#FF6B1A;--sfl:#FF9A5C;--nv:#0D1B3E;--nvm:#1A2D5A;--nvc:#1E3162;--gd:#F5C842;--gn:#22C55E;--tl:#06B6D4;--rs:#F43F5E;--pu:#8B5CF6;--lv:#A78BFA;--bg:#080F24;--tx:#E8EDF8;--mt:#8A9BC4;--br:rgba(255,255,255,0.08);--cd:rgba(26,45,90,0.55);--ra:14px;--bn:60px;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;padding-bottom:var(--bn);}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:.1;pointer-events:none;z-index:0;}
+.o1{width:500px;height:500px;background:var(--sf);top:-150px;left:-100px;}
+.o2{width:450px;height:450px;background:var(--pu);bottom:-80px;right:-80px;}
+.o3{width:350px;height:350px;background:var(--tl);top:45%;left:45%;}
+/* HEADER */
+header{position:sticky;top:0;z-index:200;background:rgba(8,15,36,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--br);padding:0 1rem;display:flex;align-items:center;gap:.75rem;height:58px;}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;flex-shrink:0;}.logo span{color:var(--sf);}
+.tagline{font-size:.62rem;color:var(--mt);display:none;}
+@media(min-width:480px){.tagline{display:block;}}
+.hbadges{margin-left:auto;display:flex;gap:.4rem;}
+.hb{background:rgba(255,107,26,.12);border:1px solid rgba(255,107,26,.25);color:var(--sfl);border-radius:20px;padding:.2rem .55rem;font-size:.62rem;font-weight:600;white-space:nowrap;}
+.mbtn{background:none;border:1px solid var(--br);color:var(--tx);border-radius:8px;padding:.35rem .6rem;cursor:pointer;font-size:.95rem;display:flex;align-items:center;}
+@media(min-width:960px){.mbtn{display:none;}}
+/* BOTTOM NAV */
+.bnav{position:fixed;bottom:0;left:0;right:0;height:var(--bn);background:rgba(8,15,36,.97);backdrop-filter:blur(20px);border-top:1px solid var(--br);display:flex;align-items:center;justify-content:space-around;z-index:200;}
+@media(min-width:960px){.bnav{display:none;}}
+.nbt{flex:1;display:flex;flex-direction:column;align-items:center;gap:.12rem;background:none;border:none;color:var(--mt);font-family:inherit;font-size:.58rem;cursor:pointer;padding:.3rem .1rem;border-radius:8px;transition:color .15s;}
+.nbt.active{color:var(--sf);}
+.nbt .ni{font-size:1.05rem;line-height:1;}
+/* DRAWER */
+.doverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:300;backdrop-filter:blur(4px);}
+.doverlay.open{display:block;}
+.drawer{position:fixed;left:0;top:0;bottom:0;width:min(85vw,320px);background:var(--nvm);z-index:310;transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding:1rem;padding-bottom:80px;}
+.drawer.open{transform:translateX(0);}
+.dhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--br);}
+.dtitle{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;}
+.dclose{background:none;border:1px solid var(--br);color:var(--tx);border-radius:8px;padding:.3rem .6rem;cursor:pointer;}
+/* HERO */
+.hero{position:relative;z-index:1;padding:2rem 1rem 1rem;text-align:center;max-width:860px;margin:0 auto;}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.6rem,6vw,3.2rem);line-height:1.15;background:linear-gradient(135deg,#fff 30%,var(--sfl) 70%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero p{color:var(--mt);font-size:.88rem;margin:.6rem 0 0;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6;}
+/* STATS */
+.statsbar{position:relative;z-index:1;max-width:1200px;margin:1.25rem auto 0;padding:0 1rem;display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;}
+@media(min-width:600px){.statsbar{grid-template-columns:repeat(6,1fr);}}
+.sc{background:var(--cd);border:1px solid var(--br);border-radius:10px;padding:.7rem .5rem;text-align:center;}
+.sc .sv{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--sf);}
+.sc .sl{font-size:.62rem;color:var(--mt);margin-top:.15rem;line-height:1.3;}
+/* STREAMS */
+.strmsec{position:relative;z-index:1;max-width:1200px;margin:1.5rem auto 0;padding:0 1rem;}
+.slbl{font-family:'Syne',sans-serif;font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--sf);margin-bottom:.65rem;display:flex;align-items:center;gap:.4rem;}
+.slbl::before{content:'';width:16px;height:2px;background:var(--sf);border-radius:2px;flex-shrink:0;}
+.strmscroll{display:flex;gap:.45rem;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.5rem;scrollbar-width:none;}
+.strmscroll::-webkit-scrollbar{display:none;}
+.stbtn{background:var(--cd);border:1px solid var(--br);border-radius:10px;padding:.55rem .85rem;cursor:pointer;transition:all .18s;color:var(--tx);font-family:inherit;font-size:.78rem;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:.45rem;font-weight:500;}
+.stbtn.active,.stbtn:active{background:rgba(255,107,26,.15);border-color:var(--sf);transform:translateY(-1px);}
+/* SEARCH */
+.srcharea{position:relative;z-index:1;max-width:1200px;margin:1.25rem auto 0;padding:0 1rem;display:flex;gap:.6rem;}
+.srchwrap{flex:1;position:relative;}
+.srchwrap input{width:100%;background:rgba(255,255,255,.07);border:1px solid var(--br);border-radius:10px;padding:.7rem .9rem .7rem 2.3rem;color:var(--tx);font-family:inherit;font-size:.88rem;outline:none;transition:border .15s;}
+.srchwrap input:focus{border-color:rgba(255,107,26,.4);}
+.srchi{position:absolute;left:.75rem;top:50%;transform:translateY(-50%);color:var(--mt);font-size:.85rem;pointer-events:none;}
+.srchwrap input::placeholder{color:var(--mt);}
+.srtsel{background:rgba(255,255,255,.07);border:1px solid var(--br);color:var(--tx);border-radius:10px;padding:.7rem .75rem;font-family:inherit;font-size:.78rem;outline:none;cursor:pointer;min-width:110px;}
+/* FILTER CHIPS */
+.fbar{position:relative;z-index:1;max-width:1200px;margin:.85rem auto 0;padding:0 1rem;display:flex;gap:.4rem;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:.25rem;}
+.fbar::-webkit-scrollbar{display:none;}
+.flbl{font-size:.72rem;color:var(--mt);font-weight:500;white-space:nowrap;align-self:center;flex-shrink:0;}
+.fchip{background:rgba(255,255,255,.05);border:1px solid var(--br);border-radius:20px;padding:.28rem .75rem;font-size:.72rem;color:var(--mt);cursor:pointer;transition:all .15s;font-family:inherit;white-space:nowrap;flex-shrink:0;}
+.fchip.active{background:rgba(6,182,212,.15);border-color:var(--tl);color:var(--tl);}
+.rinfo{position:relative;z-index:1;max-width:1200px;margin:.6rem auto 0;padding:0 1rem;font-size:.75rem;color:var(--mt);}
+.rinfo strong{color:var(--tx);}
+/* MAIN LAYOUT */
+.maincont{position:relative;z-index:1;max-width:1200px;margin:1.25rem auto;padding:0 1rem;display:grid;grid-template-columns:1fr;gap:1.25rem;}
+@media(min-width:960px){.maincont{grid-template-columns:260px 1fr;}}
+/* SIDEBAR */
+.sidebar{display:none;flex-direction:column;gap:.85rem;}
+@media(min-width:960px){.sidebar{display:flex;position:sticky;top:70px;}}
+.scard{background:var(--cd);border:1px solid var(--br);border-radius:var(--ra);padding:.9rem;}
+.scard h3{font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;color:var(--mt);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.65rem;}
+.flist{display:flex;flex-direction:column;gap:.25rem;}
+.fitem{display:flex;align-items:center;gap:.5rem;padding:.38rem .45rem;border-radius:8px;cursor:pointer;transition:all .12s;font-size:.8rem;}
+.fitem:hover,.fitem.active{background:rgba(255,255,255,.07);}
+.fitem.active{color:var(--sf);}
+.fdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.fcnt{margin-left:auto;font-size:.65rem;color:var(--mt);background:rgba(255,255,255,.06);padding:.1rem .38rem;border-radius:10px;}
+.rngflt label{font-size:.72rem;color:var(--mt);display:flex;justify-content:space-between;}
+.rngflt input[type=range]{width:100%;margin:.4rem 0;accent-color:var(--sf);}
+.drawer .sidebar{display:flex;position:static;}
+.drawer .scard{background:rgba(255,255,255,.04);}
+/* CARDS */
+.cardsarea{display:flex;flex-direction:column;gap:.85rem;}
+.ccard{background:var(--cd);border:1px solid var(--br);border-radius:var(--ra);overflow:hidden;transition:all .2s;}
+@media(hover:hover){.ccard:hover{border-color:rgba(255,107,26,.3);box-shadow:0 6px 28px rgba(0,0,0,.3);transform:translateY(-2px);}}
+.chdr{padding:1rem 1rem .65rem;display:flex;gap:.85rem;align-items:flex-start;}
+.clogo{width:46px;height:46px;border-radius:9px;background:var(--nvc);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;border:1px solid var(--br);}
+.cmeta{flex:1;min-width:0;}
+.cname{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cloc{font-size:.7rem;color:var(--mt);margin-top:.12rem;}
+.cbdgs{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.4rem;}
+.cbdg{font-size:.6rem;font-weight:600;padding:.18rem .5rem;border-radius:8px;text-transform:uppercase;letter-spacing:.03em;}
+.bn{background:rgba(245,200,66,.12);color:var(--gd);border:1px solid rgba(245,200,66,.25);}
+.bg{background:rgba(34,197,94,.1);color:var(--gn);border:1px solid rgba(34,197,94,.25);}
+.bp{background:rgba(168,85,247,.1);color:var(--lv);border:1px solid rgba(168,85,247,.25);}
+.bd{background:rgba(6,182,212,.1);color:var(--tl);border:1px solid rgba(6,182,212,.25);}
+.ba{background:rgba(244,63,94,.1);color:#fb7185;border:1px solid rgba(244,63,94,.25);}
+.bi{background:rgba(255,107,26,.12);color:var(--sfl);border:1px solid rgba(255,107,26,.3);}
+.cscore{text-align:right;flex-shrink:0;}
+.sval{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--sf);}
+.slb{font-size:.6rem;color:var(--mt);text-transform:uppercase;letter-spacing:.05em;}
+/* EXAM ROW */
+.examrow{padding:.5rem 1rem;background:rgba(0,0,0,.18);display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;}
+.elbl{font-size:.67rem;color:var(--mt);margin-right:.2rem;flex-shrink:0;}
+.etag{background:rgba(255,107,26,.1);color:var(--sfl);border:1px solid rgba(255,107,26,.2);border-radius:6px;padding:.12rem .45rem;font-size:.67rem;font-weight:600;}
+/* QUICK LINKS ROW */
+.qlrow{padding:.5rem 1rem;border-top:1px solid var(--br);display:flex;flex-wrap:wrap;gap:.3rem;align-items:center;}
+.ql{display:inline-flex;align-items:center;gap:.28rem;padding:.22rem .58rem;border-radius:6px;font-size:.65rem;font-weight:600;text-decoration:none;transition:all .15s;white-space:nowrap;border:1px solid;}
+.ql:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.25);}
+.ql-site{background:rgba(255,107,26,.1);color:var(--sfl);border-color:rgba(255,107,26,.3);}
+.ql-apply{background:rgba(34,197,94,.1);color:var(--gn);border-color:rgba(34,197,94,.3);}
+.ql-sch{background:rgba(245,200,66,.1);color:var(--gd);border-color:rgba(245,200,66,.3);}
+.ql-host{background:rgba(168,85,247,.1);color:var(--lv);border-color:rgba(168,85,247,.3);}
+.ql-place{background:rgba(244,63,94,.1);color:#fb7185;border-color:rgba(244,63,94,.3);}
+.ql-nirf{background:rgba(255,255,255,.05);color:var(--mt);border-color:var(--br);}
+.ql-broc{background:rgba(6,182,212,.1);color:var(--tl);border-color:rgba(6,182,212,.3);}
+/* CARD GRID */
+.cgrid{padding:.5rem 1rem .85rem;display:grid;grid-template-columns:1fr 1fr;gap:.6rem;border-top:1px solid var(--br);}
+@media(min-width:540px){.cgrid{grid-template-columns:1fr 1fr 1fr;}}
+.cgi .cil{font-size:.63rem;color:var(--mt);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.15rem;}
+.cgi .civ{font-size:.78rem;font-weight:500;line-height:1.4;}
+/* FACILITIES STRIP */
+.facstrip{padding:.55rem 1rem;border-top:1px solid var(--br);display:flex;flex-wrap:wrap;gap:.3rem;align-items:center;}
+.faclbl{font-size:.65rem;color:var(--mt);margin-right:.25rem;flex-shrink:0;}
+.factag{display:inline-flex;align-items:center;gap:.25rem;background:rgba(255,255,255,.04);border:1px solid var(--br);border-radius:6px;padding:.14rem .45rem;font-size:.66rem;color:var(--tx);}
+/* EXPAND BTN */
+.expbtn{width:100%;background:none;border:none;border-top:1px solid var(--br);color:var(--mt);font-size:.76rem;padding:.6rem;cursor:pointer;font-family:inherit;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:.35rem;}
+.expbtn:hover{color:var(--sf);background:rgba(255,107,26,.04);}
+/* DETAIL PANEL */
+.cdetail{display:none;font-size:.8rem;line-height:1.7;border-top:1px solid var(--br);}
+.cdetail.open{display:block;}
+.dtabs{display:flex;border-bottom:1px solid var(--br);overflow-x:auto;scrollbar-width:none;}
+.dtabs::-webkit-scrollbar{display:none;}
+.dtab{padding:.55rem .85rem;font-size:.72rem;font-weight:600;cursor:pointer;color:var(--mt);background:none;border:none;font-family:inherit;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;flex-shrink:0;}
+.dtab.active{color:var(--sf);border-bottom-color:var(--sf);}
+.dpanel{display:none;padding:.9rem 1rem;}
+.dpanel.active{display:block;}
+.dsec{margin-bottom:.9rem;}
+.dsec h4{font-family:'Syne',sans-serif;font-weight:700;font-size:.72rem;color:var(--sf);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.35rem;display:flex;align-items:center;gap:.35rem;}
+.dsec h4::before{content:'';width:10px;height:2px;background:var(--sf);flex-shrink:0;}
+.dlist{list-style:none;display:flex;flex-direction:column;gap:.22rem;}
+.dlist li{display:flex;gap:.45rem;font-size:.78rem;}
+.dlist li::before{content:'→';color:var(--sf);flex-shrink:0;font-size:.7rem;margin-top:.15rem;}
+.schitem{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.15);border-radius:8px;padding:.45rem .7rem;margin:.2rem 0;}
+.schitem strong{color:var(--gn);}
+.schitem small{color:var(--mt);font-size:.74rem;}
+/* FACILITIES GRID */
+.facgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.5rem;}
+.facc{background:rgba(255,255,255,.04);border:1px solid var(--br);border-radius:8px;padding:.5rem .65rem;display:flex;align-items:flex-start;gap:.45rem;}
+.facc .fi{font-size:1.1rem;flex-shrink:0;}
+.facc .fd .fn{font-size:.75rem;font-weight:600;}
+.facc .fd .fs{font-size:.65rem;color:var(--mt);margin-top:.1rem;line-height:1.4;}
+/* LINKS GRID */
+.linksgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:.6rem;margin-top:.5rem;}
+.lcard{background:rgba(255,255,255,.04);border:1px solid var(--br);border-radius:10px;padding:.75rem .9rem;text-decoration:none;color:var(--tx);display:flex;align-items:flex-start;gap:.65rem;transition:all .18s;}
+.lcard:hover{border-color:rgba(255,107,26,.35);background:rgba(255,107,26,.07);transform:translateY(-2px);}
+.lci{font-size:1.25rem;flex-shrink:0;margin-top:.05rem;}
+.lcb .lct{font-size:.8rem;font-weight:600;line-height:1.3;}
+.lcb .lcd{font-size:.68rem;color:var(--mt);margin-top:.15rem;line-height:1.4;}
+.lcb .lcu{font-size:.6rem;color:var(--sf);margin-top:.2rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px;}
+.lstitle{font-family:'Syne',sans-serif;font-weight:700;font-size:.72rem;color:var(--sf);text-transform:uppercase;letter-spacing:.07em;margin:1rem 0 .5rem;display:flex;align-items:center;gap:.35rem;}
+.lstitle::before{content:'';width:10px;height:2px;background:var(--sf);}
+/* STARS */
+.stars{color:var(--gd);font-size:.85rem;letter-spacing:.08em;}
+.rrow{display:flex;align-items:center;gap:.5rem;margin:.4rem 0;}
+.rlbl{font-size:.72rem;color:var(--mt);}
+/* EXAM CALENDAR */
+.examcal{position:relative;z-index:1;max-width:1200px;margin:2rem auto;padding:0 1rem;}
+.tlgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.6rem;margin-top:.85rem;}
+.tlcard{background:var(--cd);border:1px solid var(--br);border-radius:var(--ra);padding:.85rem;border-left:3px solid;transition:all .2s;}
+@media(hover:hover){.tlcard:hover{transform:translateY(-2px);}}
+.tlex{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;margin-bottom:.25rem;}
+.tldt{font-size:.68rem;font-weight:600;margin-bottom:.25rem;}
+.tlinf{font-size:.69rem;color:var(--mt);line-height:1.55;}
+.tlapply{display:inline-flex;align-items:center;gap:.3rem;margin-top:.5rem;padding:.28rem .65rem;background:rgba(255,107,26,.12);border:1px solid rgba(255,107,26,.3);color:var(--sfl);border-radius:6px;font-size:.67rem;font-weight:600;text-decoration:none;transition:all .15s;}
+.tlapply:hover{background:rgba(255,107,26,.22);transform:translateY(-1px);}
+.tlinfo2{display:inline-flex;align-items:center;gap:.3rem;margin-top:.5rem;margin-left:.3rem;padding:.28rem .65rem;background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);color:var(--tl);border-radius:6px;font-size:.67rem;font-weight:600;text-decoration:none;transition:all .15s;}
+.tlinfo2:hover{background:rgba(6,182,212,.2);transform:translateY(-1px);}
+/* EMPTY */
+.empty{text-align:center;padding:3rem 1rem;color:var(--mt);}
+.empty .ei{font-size:2.5rem;margin-bottom:.75rem;}
+footer{position:relative;z-index:1;text-align:center;padding:2rem 1rem;font-size:.72rem;color:var(--mt);border-top:1px solid var(--br);margin-top:2rem;line-height:1.7;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
+@keyframes fI{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.ccard{animation:fI .22s ease both;}
+@keyframes sI{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.dpanel.active{animation:sI .18s ease;}
+</style>
+</head>
+<body>
+<div class="bg-orb o1"></div><div class="bg-orb o2"></div><div class="bg-orb o3"></div>
+<header>
+  <div><div class="logo">Edu<span>Path</span> India</div><div class="tagline">Complete Admission Guide · After +2</div></div>
+  <div class="hbadges"><span class="hb">🎓 25+ Colleges</span><span class="hb">📋 16 Exams</span></div>
+  <button class="mbtn" onclick="openDrawer()">⚙️</button>
+</header>
+<div class="doverlay" id="dov" onclick="closeDrawer()"></div>
+<div class="drawer" id="drw">
+  <div class="dhdr"><div class="dtitle">⚙️ Filters</div><button class="dclose" onclick="closeDrawer()">✕</button></div>
+  <div class="sidebar" id="dsb"></div>
+</div>
+<div class="hero">
+  <h1>Find Your Perfect College<br>After Class 12th</h1>
+  <p>Entrance exams, fees, scholarships, facilities & official links — for every career path in India.</p>
+</div>
+<div class="statsbar">
+  <div class="sc"><div class="sv">23</div><div class="sl">IITs</div></div>
+  <div class="sc"><div class="sv">31</div><div class="sl">NITs</div></div>
+  <div class="sc"><div class="sv">21</div><div class="sl">IIMs</div></div>
+  <div class="sc"><div class="sv">7</div><div class="sl">AIIMS</div></div>
+  <div class="sc"><div class="sv">24</div><div class="sl">NLUs</div></div>
+  <div class="sc"><div class="sv">16</div><div class="sl">NIFTs</div></div>
+</div>
+<div class="strmsec">
+  <div class="slbl">Choose Your Stream After +2</div>
+  <div class="strmscroll">
+    <button class="stbtn active" onclick="setStream(this,'all')">🏛️ All Streams</button>
+    <button class="stbtn" onclick="setStream(this,'engineering')">⚙️ Engineering & Tech</button>
+    <button class="stbtn" onclick="setStream(this,'medical')">🏥 Medical & Health</button>
+    <button class="stbtn" onclick="setStream(this,'management')">📊 Management</button>
+    <button class="stbtn" onclick="setStream(this,'law')">⚖️ Law</button>
+    <button class="stbtn" onclick="setStream(this,'science')">🔬 Pure Sciences</button>
+    <button class="stbtn" onclick="setStream(this,'design')">🎨 Design & Fashion</button>
+    <button class="stbtn" onclick="setStream(this,'arts')">📚 Arts & Humanities</button>
+    <button class="stbtn" onclick="setStream(this,'commerce')">💰 Commerce</button>
+    <button class="stbtn" onclick="setStream(this,'agriculture')">🌾 Agriculture & Vet</button>
+    <button class="stbtn" onclick="setStream(this,'media')">📡 Media & Comm</button>
+    <button class="stbtn" onclick="setStream(this,'hotel')">🏨 Hotel & Tourism</button>
+    <button class="stbtn" onclick="setStream(this,'pharmacy')">💊 Pharmacy</button>
+    <button class="stbtn" onclick="setStream(this,'it')">💻 IT & CS</button>
+    <button class="stbtn" onclick="setStream(this,'aviation')">✈️ Aviation & Defence</button>
+    <button class="stbtn" onclick="setStream(this,'education')">🎓 Education</button>
+  </div>
+</div>
+<div class="srcharea">
+  <div class="srchwrap"><span class="srchi">🔍</span><input type="text" id="si" placeholder="Search colleges, cities, exams, courses…" oninput="filterCards()"></div>
+  <select class="srtsel" id="ss" onchange="filterCards()">
+    <option value="nirf">NIRF Rank</option>
+    <option value="fees-low">Fees ↑</option>
+    <option value="fees-high">Fees ↓</option>
+    <option value="alpha">A → Z</option>
+  </select>
+</div>
+<div class="fbar">
+  <span class="flbl">Filter:</span>
+  <button class="fchip active" onclick="setQF(this,'all')">All</button>
+  <button class="fchip" onclick="setQF(this,'govt')">🏛️ Govt</button>
+  <button class="fchip" onclick="setQF(this,'private')">🏢 Private</button>
+  <button class="fchip" onclick="setQF(this,'deemed')">📜 Deemed</button>
+  <button class="fchip" onclick="setQF(this,'top10')">🔥 Top 10</button>
+  <button class="fchip" onclick="setQF(this,'scholarship')">💰 Scholarships</button>
+  <button class="fchip" onclick="setQF(this,'low-fees')">💸 Low Fees</button>
+  <button class="fchip" onclick="setQF(this,'hostel')">🏠 Hostel</button>
+  <button class="fchip" onclick="setQF(this,'research')">🔬 Research</button>
+</div>
+<div class="rinfo">Showing <strong id="rc">0</strong> institutions</div>
+<div class="maincont">
+  <aside class="sidebar" id="dsktop"></aside>
+  <div>
+    <div class="cardsarea" id="cc"></div>
+    <div class="empty" id="es" style="display:none"><div class="ei">🔍</div><div>No results.<br><small>Try adjusting filters.</small></div></div>
+  </div>
+</div>
+<div class="examcal" id="exsec" style="display:none">
+  <div class="slbl">Entrance Exam Calendar 2025–26</div>
+  <div class="tlgrid" id="et"></div>
+</div>
+<nav class="bnav">
+  <button class="nbt active" id="bn0" onclick="showSec('colleges',this)"><span class="ni">🏛️</span>Colleges</button>
+  <button class="nbt" id="bn1" onclick="showSec('exams',this)"><span class="ni">📋</span>Exams</button>
+  <button class="nbt" id="bn2" onclick="showSec('streams',this)"><span class="ni">🎯</span>Streams</button>
+  <button class="nbt" id="bn3" onclick="openDrawer()"><span class="ni">⚙️</span>Filters</button>
+</nav>
+<footer>
+  <strong>EduPath India</strong> — Comprehensive College Admission Guide for Students After Class 12th<br>
+  Data based on NIRF 2025, official university sources & latest admission notifications.<br>
+  <span style="color:var(--sf)">ℹ️ All links open official websites in a new tab. Verify details before applying.</span>
+</footer>
+<script>
+const COLLEGES=[
+{id:1,name:"IIT Madras",short:"IITM",icon:"🔧",nirf:1,location:"Chennai, Tamil Nadu",region:"south",type:"govt",tags:["autonomous","iit"],streams:["engineering","it","science"],exams:["JEE Advanced"],annualFees:3,eligibility:"75% in PCM (Class 12); Top 2.5% JEE Main scorers qualify for JEE Advanced",process:"1. Appear in JEE Main (Jan & Apr) → 2. Qualify JEE Advanced (May) → 3. JoSAA Online Counselling (Jun–Jul) → 4. Seat Allotment → 5. Document Verification → 6. Fee Payment & Reporting",applyWindow:"JEE Main: Jan & Apr | JEE Advanced: May–Jun | JoSAA: Jun–Jul",fees:"₹2–3.5L/yr tuition + Hostel ₹80K–1.2L/yr",totalFees:"~₹8–10L for 4-yr BTech",scholarships:[{name:"IITM Institute Scholarship",detail:"Need-based; up to full fee waiver for family income <₹5L/yr"},{name:"SC/ST Government Scholarship",detail:"100% fee waiver + ₹1,250/month stipend"},{name:"Merit-cum-Means Scholarship",detail:"₹1,000/month for top academic performers"}],cutoff:"Gen: Rank <300 for CSE | OBC: <1,000 | SC: <6,000",courses:"BTech, BS, Dual Degree (BTech+MTech), MTech, MBA, PhD",duration:"BTech: 4 yrs | Dual: 5 yrs",placement:"Avg ₹21.6 LPA | Highest ₹2.5 Cr | Google, Microsoft, Amazon, Qualcomm",facilities:[{icon:"🏠",name:"Hostels",detail:"19 hostels; AC & non-AC; 24x7 security; laundry rooms"},{icon:"🍽️",name:"Mess & Cafeteria",detail:"Multiple mess halls; veg & non-veg; ~₹3,500/month"},{icon:"📚",name:"Central Library",detail:"2.5L+ volumes; 24x7 digital access; e-journals, JSTOR"},{icon:"🏋️",name:"Sports Complex",detail:"Olympic pool, cricket, tennis, basketball, athletics track"},{icon:"🔬",name:"Research Labs",detail:"100+ labs; AI, nanotech, aerospace, ocean engineering"},{icon:"🏥",name:"Health Centre",detail:"24x7 hospital on campus; specialists; ambulance service"},{icon:"🌐",name:"Wi-Fi Campus",detail:"High-speed gigabit Wi-Fi across all buildings & hostels"},{icon:"🎭",name:"Cultural Hub",detail:"Saarang (cultural), Shaastra (tech fest), amphitheatre"},{icon:"🚌",name:"Transport",detail:"IIT bus service to Chennai; internal campus shuttles"},{icon:"🏪",name:"Campus Stores",detail:"SBI, Canara Bank, post office, pharmacy, supermarket"},{icon:"💻",name:"HPC Centre",detail:"High-performance computing; latest GPU clusters for research"},{icon:"♿",name:"Accessibility",detail:"Ramps, lifts, accessible restrooms; disability-friendly pathways"}],campusRating:5,detail:"IIT Madras est. 1959. Sprawling 617-acre campus with a deer park. Ranked #1 NIRF for 9 consecutive years. India's first IIT to open an overseas campus (Zanzibar). Known for AI, robotics, ocean & aerospace engineering research.",
+links:{website:{url:"https://www.iitm.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://www.iitm.ac.in/academics/admissions",label:"Admissions Portal",icon:"🎓"},examApply:{url:"https://jeemain.nta.ac.in",label:"Apply JEE Main (NTA)",icon:"✏️"},josaa:{url:"https://josaa.nic.in",label:"JoSAA Counselling",icon:"📋"},scholarship:{url:"https://www.iitm.ac.in/students/scholarship",label:"Scholarships & Aid",icon:"💰"},hostel:{url:"https://www.iitm.ac.in/campus-life/hostels",label:"Hostels",icon:"🏠"},placement:{url:"https://placement.iitm.ac.in",label:"Placement Stats",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Engineering",label:"NIRF #1 Engineering",icon:"🏆"}}
+},
+{id:2,name:"IIT Delhi",short:"IITD",icon:"🔧",nirf:2,location:"Hauz Khas, New Delhi",region:"north",type:"govt",tags:["autonomous","iit"],streams:["engineering","it","science","management"],exams:["JEE Advanced"],annualFees:3,eligibility:"75% in PCM (65% SC/ST); Qualify JEE Advanced",process:"1. JEE Main → 2. JEE Advanced → 3. JoSAA Counselling → 4. Seat Allotment → 5. Document Verification → 6. Reporting",applyWindow:"JEE Main: Jan & Apr | JoSAA: Jun–Jul",fees:"₹2.2L/yr tuition + Hostel & Mess",totalFees:"~₹8–10L for BTech",scholarships:[{name:"IITD Merit Scholarship",detail:"Top 7% students get ₹2,000/month"},{name:"Need-based Aid",detail:"Income <₹4.5L/yr — partial to full fee waiver"},{name:"DASA/CIWG",detail:"Separate quota for NRI/OCI students"}],cutoff:"CSE: Rank <66 (Gen) | Electrical: <250 | Mechanical: <450",courses:"BTech, MTech, MBA (DMS), MSc, PhD",duration:"BTech: 4 yrs",placement:"Avg ₹20.8 LPA | Highest ₹1.5 Cr+",facilities:[{icon:"🏠",name:"Hostels",detail:"13 hostels (11 UG + 2 PG); 24x7 security; laundry rooms"},{icon:"🍽️",name:"Mess & Food",detail:"Central mess + Nescafe, Amul; multiple campus eateries"},{icon:"📚",name:"Central Library",detail:"3L+ books; e-library open till midnight"},{icon:"🏋️",name:"Sports",detail:"Olympic pool, squash, lawn tennis, football, gymnasium"},{icon:"🔬",name:"Research Labs",detail:"250+ labs across 30 departments; clean rooms for nano-tech"},{icon:"🏥",name:"Medical Centre",detail:"24x7 clinic; AIIMS partnership for emergencies"},{icon:"🌐",name:"Campus Wi-Fi",detail:"Gigabit Wi-Fi; free for all students"},{icon:"🎭",name:"Cultural Life",detail:"Rendezvous (cultural), Tryst (tech fest), open-air theatre"},{icon:"🚇",name:"Metro Connect",detail:"Hauz Khas metro station 5 min walk from campus"},{icon:"🏦",name:"Banking",detail:"SBI & PNB ATMs; student-friendly banking"},{icon:"🌳",name:"Green Campus",detail:"320-acre urban campus; trees, lawns, cycle tracks"},{icon:"🎓",name:"Incubator",detail:"Foundation for Innovation & Technology Transfer (FITT)"}],campusRating:5,detail:"IIT Delhi est. 1961 in South Delhi. Urban campus near Hauz Khas metro. DMS (MBA) via CAT (~98 percentile cutoff). FITT incubator — India's top IIT startup ecosystem. Very close to Delhi's tech and consulting industry.",
+links:{website:{url:"https://home.iitd.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://home.iitd.ac.in/admissions.php",label:"Admissions",icon:"🎓"},examApply:{url:"https://jeemain.nta.ac.in",label:"Apply JEE Main (NTA)",icon:"✏️"},josaa:{url:"https://josaa.nic.in",label:"JoSAA Counselling",icon:"📋"},scholarship:{url:"https://home.iitd.ac.in/scholarship.php",label:"Scholarships",icon:"💰"},hostel:{url:"https://home.iitd.ac.in/hostel.php",label:"Hostels",icon:"🏠"},placement:{url:"https://csc.iitd.ac.in",label:"Career Services",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Engineering",label:"NIRF Ranking",icon:"🏆"}}
+},
+{id:3,name:"IIT Bombay",short:"IITB",icon:"🔧",nirf:3,location:"Powai, Mumbai, Maharashtra",region:"west",type:"govt",tags:["autonomous","iit"],streams:["engineering","it","science","design","management"],exams:["JEE Advanced","UCEED (B.Des)"],annualFees:3,eligibility:"75% PCM; JEE Advanced for BTech; Class 12 pass + UCEED for B.Des",process:"1. JEE Main → 2. JEE Advanced → 3. JoSAA (BTech) OR UCEED + Counselling for B.Des",applyWindow:"UCEED: Oct–Nov application | JoSAA: Jun–Jul",fees:"₹2.2–3L/yr + Hostel ₹1–1.5L/yr",totalFees:"~₹8–12L for BTech",scholarships:[{name:"IITB Merit Prizes",detail:"Cash awards for top performers each semester"},{name:"Financial Assistance Scheme",detail:"Income <₹5L/yr — up to full fee waiver"},{name:"INSPIRE Scholarship (DST)",detail:"₹80K/yr for BSc top rankers"}],cutoff:"CSE: Rank <200 | Electrical: <600 | Chemical: <2,000",courses:"BTech, B.Des, Dual Degree (BTech+MTech), MTech, MSc, MBA, PhD",duration:"BTech: 4 yrs | B.Des: 4 yrs | Dual: 5 yrs",placement:"Avg ₹21 LPA | Highest ₹2.5 Cr+ (International offers)",facilities:[{icon:"🏠",name:"Hostels",detail:"16 hostels; lakeside views; AC rooms available"},{icon:"🍽️",name:"Mess & Eateries",detail:"Per-hostel mess + Domino's, CCD, multiple canteens"},{icon:"📚",name:"Library",detail:"3.2L+ books; 24x7 reading hall; digital subscriptions"},{icon:"🏊",name:"Sports Complex",detail:"Olympic pool, cricket ground, gym, yoga, football"},{icon:"🔬",name:"Research Centres",detail:"TIFR tie-up, SINE incubator, nano-fabrication lab"},{icon:"🏥",name:"Hospital",detail:"Full-fledged hospital with 30 beds; specialists on campus"},{icon:"🌐",name:"Network",detail:"Fiber + Wi-Fi; own data centre; gigabit internet"},{icon:"🎭",name:"Mood Indigo",detail:"Asia's largest college cultural festival (250,000+ visitors)"},{icon:"🌊",name:"Scenic Campus",detail:"550-acre campus on Powai Lake; flamingos visit seasonally"},{icon:"🚂",name:"Transport",detail:"Campus bus; Kanjur Marg railway station 2 km"},{icon:"♻️",name:"Sustainability",detail:"Solar panels, rainwater harvesting, composting"},{icon:"🎨",name:"IDC Design School",detail:"India's top design school; world-class studios & tools"}],campusRating:5,detail:"IIT Bombay est. 1958. Iconic 550-acre campus on Powai Lake. IDC School of Design via UCEED — India's best design program. Mood Indigo is Asia's largest cultural fest. SINE startup incubator. Very strong placement with international offers.",
+links:{website:{url:"https://www.iitb.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://www.iitb.ac.in/en/education/admissions",label:"Admissions",icon:"🎓"},examApply:{url:"https://jeemain.nta.ac.in",label:"Apply JEE Main / UCEED",icon:"✏️"},josaa:{url:"https://josaa.nic.in",label:"JoSAA Counselling",icon:"📋"},scholarship:{url:"https://www.iitb.ac.in/en/education/financial-assistance",label:"Financial Assistance",icon:"💰"},hostel:{url:"https://www.iitb.ac.in/en/campus-life/hostels",label:"Hostels",icon:"🏠"},placement:{url:"https://www.iitb.ac.in/en/placement",label:"Placements",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Engineering",label:"NIRF Ranking",icon:"🏆"}}
+},
+{id:4,name:"AIIMS New Delhi",short:"AIIMS-D",icon:"🏥",nirf:1,location:"Ansari Nagar, New Delhi",region:"north",type:"govt",tags:["autonomous"],streams:["medical"],exams:["NEET UG"],annualFees:0.05,eligibility:"50% in PCB Class 12 (40% SC/ST/OBC-NCL); Age 17+; NEET UG qualifying score",process:"1. NEET UG Exam (May) → 2. MCC Online Counselling → 3. Choice Filling & Locking → 4. Seat Allotment → 5. Reporting & Document Verification → 6. Admission",applyWindow:"NEET UG Registration: Feb–Mar | Exam: May | MCC Counselling: Jul–Sep",fees:"₹1,628/year (hostel ~₹17K/yr) — near FREE",totalFees:"<₹15,000 for entire 5.5-yr MBBS",scholarships:[{name:"AIIMS Merit Scholarship",detail:"₹1,000/month for top 25 students"},{name:"SC/ST Government Scholarship",detail:"Full fee waiver + monthly stipend via GoI"},{name:"PM Scholarship Scheme",detail:"₹2,500–3,000/month for meritorious students"}],cutoff:"Gen: NEET Rank <100 | OBC: <500 | SC: <2,000 | ST: <3,500",courses:"MBBS (5.5 yrs), B.Sc Nursing (4 yrs), M.Sc, MD, MS, PhD",duration:"MBBS: 4.5 yrs academic + 1 yr compulsory rotating internship",placement:"MD/MS selection rate >90% for AIIMS graduates; highly sought globally",facilities:[{icon:"🏥",name:"Teaching Hospital",detail:"2,000+ bed tertiary care hospital; super-specialty; India's busiest trauma centre"},{icon:"🏠",name:"Hostels",detail:"Separate boys/girls hostels; subsidised rates; 24x7 security"},{icon:"📚",name:"Medical Library",detail:"One of South Asia's largest medical libraries; 24x7 PubMed, UpToDate access"},{icon:"🔬",name:"Research Labs",detail:"Advanced labs: genomics, proteomics, stem cell, translational research"},{icon:"🍽️",name:"Mess & Canteen",detail:"Subsidised mess; 24x7 canteen for doctors & students"},{icon:"🏋️",name:"Sports",detail:"Badminton courts, basketball, gym, cricket ground"},{icon:"🚑",name:"Emergency Services",detail:"Trauma centre, ICU, 24x7 casualty — India's busiest ER"},{icon:"💊",name:"Dispensary",detail:"On-campus pharmacy; subsidised medicines for students"},{icon:"🌐",name:"Digital Resources",detail:"HELINET; PubMed, UpToDate, Cochrane, clinical databases"},{icon:"🎭",name:"Cultural",detail:"Pulse (cultural fest), sports week, mental wellness programmes"},{icon:"👶",name:"Student Support",detail:"Counselling centre; crèche for staff; disability support"},{icon:"♿",name:"Accessibility",detail:"Fully accessible campus; Braille signage; barrier-free pathways"}],campusRating:5,detail:"AIIMS New Delhi est. 1956 — India's premier medical institution. Admission 100% through NEET UG since 2020. MBBS fee is just ₹1,628/year — among the most affordable world-class education globally. Rank under 100 typically needed for General category.",
+links:{website:{url:"https://www.aiims.edu",label:"Official Website",icon:"🌐"},admissions:{url:"https://www.aiimsexams.ac.in",label:"AIIMS Exams Portal",icon:"🎓"},examApply:{url:"https://neet.nta.nic.in",label:"Apply NEET UG (NTA)",icon:"✏️"},mcc:{url:"https://mcc.nic.in",label:"MCC Counselling",icon:"📋"},scholarship:{url:"https://scholarships.gov.in",label:"Govt Scholarships (NSP)",icon:"💰"},hostel:{url:"https://www.aiims.edu/en/about-aiims/campus-life.html",label:"Campus Life",icon:"🏠"},brochure:{url:"https://www.aiimsexams.ac.in/pdf/Information_Bulletin_MBBS.pdf",label:"MBBS Bulletin",icon:"📄"},nirf:{url:"https://www.nirfindia.org/Medical",label:"NIRF #1 Medical",icon:"🏆"}}
+},
+{id:5,name:"IIM Ahmedabad",short:"IIMA",icon:"📊",nirf:1,location:"Vastrapur, Ahmedabad, Gujarat",region:"west",type:"govt",tags:["autonomous"],streams:["management"],exams:["CAT"],annualFees:16,eligibility:"Bachelor's degree ≥50% (45% SC/ST); No age limit; CAT score; work experience preferred",process:"1. CAT Registration (Jul–Sep) → 2. CAT Exam (Nov) → 3. IIMA Shortlist (Jan) → 4. AWT + Personal Interview (Feb–Mar) → 5. Final Offer Letter (Apr) → 6. Joining (Jun)",applyWindow:"CAT Registration: Jul–Sep | Exam: Nov | AWT-PI: Feb–Mar | Joining: Jun",fees:"₹16L/year (₹32L total for 2-yr PGP)",totalFees:"₹32L for 2-yr PGP (plus hostel/living ~₹2L extra)",scholarships:[{name:"IIMA Need-based Fellowship",detail:"Up to ₹4.5L/yr for family income <₹6L/yr"},{name:"Tata Trust Scholarship",detail:"For economically weaker students; covers tuition fully"},{name:"SC/ST Concession",detail:"Reduced fees + additional GoI reserved category benefits"}],cutoff:"CAT 99+ percentile for shortlisting; final depends on academics + work exp + diversity",courses:"PGP (MBA, 2 yrs), PGP-FABM (Agri Business), FPM (PhD), PGPX (1-yr Executive MBA)",duration:"PGP: 2 yrs | PGPX: 1 yr",placement:"Avg ₹32–35 LPA | Highest ₹1 Cr+ | 100% placement | McKinsey, BCG, Goldman, Aditya Birla",facilities:[{icon:"🏠",name:"Residential Campus",detail:"All students mandatorily housed; fully AC dorms; secure campus"},{icon:"🍽️",name:"Dining Hall",detail:"IIMA central dining; multiple cuisines; 24x7 café"},{icon:"📚",name:"Vikram Sarabhai Library",detail:"70,000+ volumes; Harvard Business Review; Bloomberg terminal"},{icon:"💼",name:"Case Study Rooms",detail:"140+ air-conditioned case rooms; Harvard-style seating"},{icon:"🌐",name:"Digital Infrastructure",detail:"Bloomberg, CMIE Prowess, Capitaline; gigabit Wi-Fi"},{icon:"🏋️",name:"Sports",detail:"Swimming pool, squash, cricket, tennis, gym, yoga"},{icon:"🎭",name:"Chaos & Events",detail:"Chaos (cultural fest), Confluence (B-school summit)"},{icon:"🏦",name:"CIIE Incubator",detail:"India's top startup incubator — 150+ portfolio companies"},{icon:"🤝",name:"Alumni Network",detail:"10,000+ alumni; global IIMA clubs in 30+ countries"},{icon:"🎓",name:"Placement Office",detail:"Dedicated placement committee; 300+ companies visit"},{icon:"🌳",name:"Heritage Campus",detail:"Iconic Louis Kahn-designed red-brick campus (est. 1961)"},{icon:"🚌",name:"Transport",detail:"Campus shuttles; close to Ahmedabad airport (15 km)"}],campusRating:5,detail:"IIM Ahmedabad est. 1961 — India's most prestigious B-School. Louis Kahn's iconic red-brick campus. PGP batch ~385 students. Selection: CAT + academics + WAT/AWT + PI + work experience + diversity. CIIE is India's #1 startup incubator.",
+links:{website:{url:"https://www.iima.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://www.iima.ac.in/pgp/apply",label:"PGP Admissions",icon:"🎓"},examApply:{url:"https://iimcat.ac.in",label:"Apply CAT",icon:"✏️"},scholarship:{url:"https://www.iima.ac.in/pgp/financial-aid",label:"Financial Aid",icon:"💰"},hostel:{url:"https://www.iima.ac.in/campus/housing",label:"On-Campus Housing",icon:"🏠"},placement:{url:"https://www.iima.ac.in/pgp/placements",label:"PGP Placements",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Management",label:"NIRF #1 Management",icon:"🏆"},brochure:{url:"https://www.iima.ac.in/pgp/programme-overview",label:"PGP Programme",icon:"📄"}}
+},
+{id:6,name:"IIM Bangalore",short:"IIMB",icon:"📊",nirf:2,location:"Bannerghatta Road, Bengaluru",region:"south",type:"govt",tags:["autonomous"],streams:["management"],exams:["CAT"],annualFees:13,eligibility:"Bachelor's ≥50%; Strong CAT score",process:"1. CAT Exam (Nov) → 2. IIMB Shortlist (Jan) → 3. WAT + PI (Feb–Apr) → 4. Composite Score → 5. Offer Letter",applyWindow:"CAT: Nov–Dec | WAT-PI: Feb–Apr | Joining: Jun",fees:"₹13L/year (₹26L total)",totalFees:"₹26L for 2-yr PGP",scholarships:[{name:"IIMB Need-based Scholarship",detail:"Up to ₹4L for economically disadvantaged students"},{name:"Merit Scholarship",detail:"Top performers each term receive cash awards"},{name:"Industry Scholarships",detail:"Infosys, Aditya Birla, Godrej fellowships available"}],cutoff:"CAT 99 percentile+ (typical shortlist threshold)",courses:"MBA (PGP), PGSEM (part-time), EPGP (1-yr executive), PhD (FPM)",duration:"PGP: 2 yrs",placement:"Avg ₹30–33 LPA | 100% placement | McKinsey, BCG, Goldman Sachs",facilities:[{icon:"🏠",name:"Hostels",detail:"On-campus AC hostels; all students housed; laundry services"},{icon:"📚",name:"Library",detail:"Extensive management library; 24x7 digital access"},{icon:"🏋️",name:"Sports",detail:"Cricket, football, basketball, gym, yoga room"},{icon:"🌐",name:"Tech",detail:"Bloomberg, Reuters, SPSS, SAP; research databases"},{icon:"🎭",name:"Cultural",detail:"Unmaad (cultural fest), Eximius (B-school summit)"},{icon:"🏦",name:"NSRCEL",detail:"N.S. Raghavan Centre — India's top entrepreneurship centre"},{icon:"🍽️",name:"Food Courts",detail:"Multi-cuisine dining; Nescafe outlet on campus"},{icon:"🤝",name:"Global Exchange",detail:"Exchange with Harvard, Wharton, INSEAD, NUS"},{icon:"🌳",name:"Green Campus",detail:"100-acre lush campus; eco-friendly buildings"},{icon:"🎓",name:"Placement Cell",detail:"Dedicated team; 100% placement record consistently"},{icon:"💼",name:"Case Rooms",detail:"100+ case study rooms; state-of-the-art AV systems"},{icon:"🚌",name:"Connectivity",detail:"20 min from Bangalore city; airport shuttle available"}],campusRating:5,detail:"IIMB est. 1973, Bangalore's Bannerghatta Road. NSRCEL is India's leading entrepreneurship centre. Strong in finance, technology management, consulting. Exchange programs with 150+ global B-schools. AACSB & EQUIS accredited.",
+links:{website:{url:"https://www.iimb.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://www.iimb.ac.in/pgp/admissions",label:"PGP Admissions",icon:"🎓"},examApply:{url:"https://iimcat.ac.in",label:"Apply CAT",icon:"✏️"},scholarship:{url:"https://www.iimb.ac.in/pgp/scholarships",label:"Scholarships",icon:"💰"},hostel:{url:"https://www.iimb.ac.in/campus/hostels",label:"Campus Hostels",icon:"🏠"},placement:{url:"https://www.iimb.ac.in/pgp/placements",label:"Placement Report",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Management",label:"NIRF Ranking",icon:"🏆"},brochure:{url:"https://www.iimb.ac.in/pgp/programme",label:"PGP Details",icon:"📄"}}
+},
+{id:7,name:"NLSIU Bangalore",short:"NLSIU",icon:"⚖️",nirf:1,location:"Nagarbhavi, Bengaluru",region:"south",type:"govt",tags:["autonomous","deemed"],streams:["law"],exams:["CLAT"],annualFees:2.5,eligibility:"45% in Class 12 any stream (40% SC/ST); Age ≤20 (Gen), ≤22 (SC/ST/OBC); CLAT score",process:"1. CLAT Registration (Jun–Nov) → 2. CLAT Exam (Dec) → 3. CLAT Consortium Counselling → 4. NLU Preference Filling → 5. Seat Allotment → 6. Document Verification → 7. Fee Payment",applyWindow:"CLAT Registration: Jun–Nov | Exam: Dec | Counselling: Dec–Jan",fees:"₹2.5L/year approx",totalFees:"₹12.5L for 5-yr BA LLB",scholarships:[{name:"NLSIU Merit-cum-Means",detail:"Family income <₹3L/yr — up to full fee waiver"},{name:"Government of Karnataka Scholarship",detail:"For Karnataka domicile students"},{name:"SC/ST/OBC Fee Waiver",detail:"As per government norms; varies by category"}],cutoff:"CLAT score: ~105–112 out of 120 (varies yearly)",courses:"BA LLB (Hons) 5 yrs, LLM 1 yr, PhD",duration:"BA LLB: 5 yrs | LLM: 1 yr",placement:"AZB & Partners, Cyril Amarchand Mangaldas, Khaitan & Co | Avg ₹14–20 LPA",facilities:[{icon:"🏠",name:"Hostels",detail:"Separate boys/girls hostels; 24x7 security; all facilities"},{icon:"📚",name:"Law Library",detail:"South Asia's premier law library; 1L+ volumes; Manupatra, Westlaw, SCC Online"},{icon:"🎭",name:"Moot Court Hall",detail:"State-of-the-art moot court; national & international competitions"},{icon:"🍽️",name:"Mess & Cafeteria",detail:"Subsidised student mess; multiple food stalls on campus"},{icon:"🏋️",name:"Sports",detail:"Basketball, badminton, table tennis, cricket, gym, yoga"},{icon:"🌐",name:"Legal Databases",detail:"Manupatra, Westlaw, LexisNexis, SCC Online, HeinOnline"},{icon:"🔬",name:"Legal Aid Clinic",detail:"Free legal aid cell; community outreach programmes"},{icon:"🎓",name:"Seminar Rooms",detail:"Seminar rooms, discussion halls, arbitration chamber"},{icon:"📰",name:"NLSIU Law Review",detail:"Student-edited flagship law journal; highly cited"},{icon:"🤝",name:"Alumni Network",detail:"Supreme Court judges, senior advocates, top firm partners"},{icon:"🚌",name:"Transport",detail:"BMTC buses; university van for outstation activities"},{icon:"♿",name:"Accessibility",detail:"Ramps, accessible washrooms, disability support services"}],campusRating:4,detail:"NLSIU Bangalore est. 1987 — India's #1 NLU and original National Law University. All 24 NLUs use a common CLAT counselling portal. Students fill preference order for all NLUs and seats are allotted by rank. BA LLB is a 5-year integrated program.",
+links:{website:{url:"https://www.nls.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://consortiumofnlus.ac.in",label:"CLAT Consortium (All NLUs)",icon:"🎓"},examApply:{url:"https://consortiumofnlus.ac.in/clat-2025",label:"Apply CLAT 2026",icon:"✏️"},scholarship:{url:"https://www.nls.ac.in/scholarship",label:"Scholarships",icon:"💰"},hostel:{url:"https://www.nls.ac.in/campus-life",label:"Campus & Hostel",icon:"🏠"},placement:{url:"https://www.nls.ac.in/placements",label:"Placements",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Law",label:"NIRF #1 Law",icon:"🏆"},brochure:{url:"https://consortiumofnlus.ac.in/clat-2025/information-brochure",label:"CLAT Brochure",icon:"📄"}}
+},
+{id:8,name:"NALSAR Hyderabad",short:"NALSAR",icon:"⚖️",nirf:2,location:"Shameerpet, Hyderabad, Telangana",region:"south",type:"govt",tags:["autonomous"],streams:["law"],exams:["CLAT"],annualFees:2.2,eligibility:"45% Class 12 any stream (40% SC/ST); Age ≤20 (Gen), ≤22 (SC/ST); CLAT qualifying",process:"1. CLAT (same as all NLUs) → 2. NLU Counselling → 3. NALSAR Seat Allotment → 4. Document Verification → 5. Admission",applyWindow:"Same CLAT cycle: Jun–Jan",fees:"₹2.2L/year",totalFees:"~₹11L for 5-yr program",scholarships:[{name:"Telangana State Scholarship",detail:"For Telangana domicile students"},{name:"NALSAR Merit Scholarship",detail:"Top 10% students — fee concession each year"}],cutoff:"CLAT Score: ~102–108/120",courses:"BA LLB (Hons), BBA LLB (Hons), LLM, PhD",duration:"BA LLB: 5 yrs | BBA LLB: 5 yrs",placement:"Strong in corporate law, litigation | Avg ₹12–18 LPA",facilities:[{icon:"🏠",name:"Residential Campus",detail:"Fully residential; separate boys/girls hostels; green campus"},{icon:"📚",name:"Library",detail:"Extensive law library; digital legal databases"},{icon:"🎭",name:"Moot Court",detail:"Dedicated hall; national moot victories; strong reputation"},{icon:"🍽️",name:"Mess",detail:"Subsidised central mess; canteen; food kiosks"},{icon:"🏋️",name:"Sports",detail:"Cricket, football, basketball, tennis, indoor sports"},{icon:"🌐",name:"Internet",detail:"High-speed Wi-Fi; digital library 24x7 access"},{icon:"🎓",name:"Legal Aid",detail:"Student-run legal aid society; rural community outreach"},{icon:"📰",name:"NALSAR Law Review",detail:"Prestigious student law journal; nationally recognised"},{icon:"🤝",name:"Industry Connect",detail:"Hyderabad High Court, ICICI Prudential tie-ups"},{icon:"🌳",name:"Green Campus",detail:"150-acre green campus; eco-friendly buildings"},{icon:"🚌",name:"Transport",detail:"TSRTC buses; campus vehicles for city trips"},{icon:"🎭",name:"Cultural Fest",detail:"Annual cultural-sports fest; debate competitions"}],campusRating:4,detail:"NALSAR est. 1998 — top 5 NLU in India. Known for rigorous academics and moot court culture. BBA LLB integrates business with law. Strong alumni in corporate law firms and international organisations.",
+links:{website:{url:"https://www.nalsar.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://consortiumofnlus.ac.in",label:"CLAT Consortium",icon:"🎓"},examApply:{url:"https://consortiumofnlus.ac.in/clat-2025",label:"Apply CLAT 2026",icon:"✏️"},scholarship:{url:"https://www.nalsar.ac.in/scholarships",label:"Scholarships",icon:"💰"},hostel:{url:"https://www.nalsar.ac.in/campus-life",label:"Campus Life",icon:"🏠"},placement:{url:"https://www.nalsar.ac.in/placements",label:"Placements",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Law",label:"NIRF #2 Law",icon:"🏆"},brochure:{url:"https://consortiumofnlus.ac.in/clat-2025/information-brochure",label:"CLAT Brochure",icon:"📄"}}
+},
+{id:9,name:"NIFT New Delhi",short:"NIFT-D",icon:"🎨",nirf:1,location:"Hauz Khas, New Delhi",region:"north",type:"govt",tags:["autonomous"],streams:["design"],exams:["NIFT Entrance Test"],annualFees:2.3,eligibility:"Class 12 pass in any stream; Age ≤23 (Gen), ≤28 (SC/ST/OBC); NIFT entrance exam",process:"1. NIFT Online Application (Nov–Jan) → 2. Written Test: CAT+GAT (Feb) → 3. Situation Test — practical creative task (Apr) → 4. Merit List → 5. Online Counselling → 6. Admission & Reporting",applyWindow:"Application: Nov–Jan | Written Exam: Feb | Situation Test: Apr | Admission: Jun–Jul",fees:"₹2.3L/year",totalFees:"₹9.2L for 4-yr B.Des",scholarships:[{name:"NIFT Merit Scholarship",detail:"Top 10 rank holders across India — 50% tuition waiver"},{name:"SC/ST Scholarship",detail:"Full fee waiver as per GoI norms"},{name:"EWS Scholarship",detail:"Family income <₹8L/yr — up to ₹50K/yr assistance"}],cutoff:"CAT+GAT written score + Situation Test score (combined merit list)",courses:"B.Des in Fashion Design (FD), Textile Design (TD), Knitwear (KD), Leather (LC), Accessory (AD), Fashion Tech (FT), Fashion Mgmt (FMgmt); M.Des; MFM",duration:"B.Des: 4 yrs | M.Des: 2 yrs | MFM: 2 yrs",placement:"Titan, Myntra, Lifestyle, Raymond, Zara India, LVMH | Avg ₹6–10 LPA",facilities:[{icon:"🎨",name:"Design Studios",detail:"Dedicated studios for each discipline; natural light-filled spaces"},{icon:"🧵",name:"Apparel Workshop",detail:"Industry-grade sewing machines, embroidery, weaving looms"},{icon:"💻",name:"CAD/CAM Lab",detail:"Adobe Suite, AutoCAD, CLO3D, Browzwear fashion design software"},{icon:"🏠",name:"Hostel",detail:"Limited hostel seats; separate girls/boys; priority to outstation students"},{icon:"📚",name:"Design Library",detail:"India's largest fashion & design library; trend forecasting reports"},{icon:"🛒",name:"Material Store",detail:"On-campus fabric & material store; subsidised pricing"},{icon:"🌐",name:"Wi-Fi",detail:"Campus-wide high-speed Wi-Fi; internet in all studios"},{icon:"🎭",name:"Graduate Collection",detail:"Annual fashion show; student showcase to industry"},{icon:"🏭",name:"Industry Lab",detail:"Tie-ups with Mafatlal, Arvind Mills, PVH for industry projects"},{icon:"🍽️",name:"Cafeteria",detail:"Multiple canteens; food stalls; subsidised student meals"},{icon:"🚇",name:"Transport",detail:"NIFT shuttle; Hauz Khas metro (Yellow Line) nearby"},{icon:"♻️",name:"Eco Design Studio",detail:"Sustainable design lab; upcycling & zero-waste workshops"}],campusRating:4,detail:"NIFT est. 1986 — India's premier fashion institute with 16 campuses nationwide. NIFT exam: CAT (Creative Ability Test) + GAT (General Ability Test) written, followed by Situation Test — a 3-hour hands-on creative task judged by industry experts.",
+links:{website:{url:"https://www.nift.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://admissions.nift.ac.in",label:"NIFT Admissions Portal",icon:"🎓"},examApply:{url:"https://admissions.nift.ac.in/nift/reg/login.php",label:"Apply NIFT Entrance",icon:"✏️"},scholarship:{url:"https://www.nift.ac.in/scholarship",label:"Scholarships",icon:"💰"},hostel:{url:"https://www.nift.ac.in/new-delhi/campus-life",label:"Campus Life",icon:"🏠"},placement:{url:"https://www.nift.ac.in/new-delhi/placements",label:"Placements",icon:"💼"},nirf:{url:"https://www.nirfindia.org",label:"NIRF Ranking",icon:"🏆"},brochure:{url:"https://admissions.nift.ac.in/nift/reg/guideline.php",label:"Admission Brochure",icon:"📄"}}
+},
+{id:10,name:"NID Ahmedabad",short:"NID",icon:"🎨",nirf:2,location:"Paldi, Ahmedabad, Gujarat",region:"west",type:"govt",tags:["autonomous","deemed"],streams:["design"],exams:["NID DAT"],annualFees:2.0,eligibility:"Class 12 pass any stream; NID DAT Prelims + Mains",process:"1. NID Application (Oct–Dec) → 2. DAT Prelims — written aptitude + GK (Jan) → 3. DAT Mains — Studio Test (Mar) → 4. Interview → 5. Final Merit List → 6. Admission",applyWindow:"Application: Oct–Dec | DAT Prelims: Jan | DAT Mains: Mar | Admission: May–Jun",fees:"~₹2L/year",totalFees:"₹8–10L for B.Des",scholarships:[{name:"NID Scholarship",detail:"Merit & need-based; up to 50% tuition waiver"},{name:"SC/ST Fee Concession",detail:"Full fee waiver as per GoI norms"}],cutoff:"Portfolio quality + DAT aptitude + studio skills + interview (no fixed rank)",courses:"B.Des (Product, Communication, Textile, Film & Video, Interaction, Furniture), G.Dip, M.Des",duration:"B.Des: 4 yrs | G.Dip: 2.5 yrs | M.Des: 2 yrs",placement:"Top design studios, product companies, ISRO, Tata, HUL | Avg ₹8–14 LPA",facilities:[{icon:"🎨",name:"Design Studios",detail:"Spacious studios per discipline; natural light; inspiring environments"},{icon:"🏭",name:"Workshops",detail:"Wood, metal, ceramic, electronics, textile & prototyping workshops"},{icon:"📚",name:"Design Library",detail:"South Asia's best design library; rare design books, journals & films"},{icon:"💻",name:"Digital Lab",detail:"Rhino, SolidWorks, After Effects, Figma, 3D printing; AR/VR lab"},{icon:"🏠",name:"Hostel",detail:"On-campus hostel; priority to outstation; limited seats"},{icon:"🎬",name:"Media Centre",detail:"AV production suite; photography darkroom; film equipment"},{icon:"🍽️",name:"Canteen",detail:"Campus canteen; affordable vegetarian meals"},{icon:"🌐",name:"Wi-Fi",detail:"High-speed campus Wi-Fi; online design resource access"},{icon:"🎭",name:"Design Gallery",detail:"NID gallery for student exhibitions open to public"},{icon:"🤝",name:"Live Industry Projects",detail:"Real projects with ISRO, Tata, HUL, Govt of India"},{icon:"🌍",name:"International Exchange",detail:"Exchange with RCA London, Domus Academy Milan, TU Delft"},{icon:"🏪",name:"Design Store",detail:"NID merchandise & student works sold; unique campus store"}],campusRating:4,detail:"NID est. 1961 — India's original and most prestigious design institute. DAT (Design Aptitude Test) tests creativity, spatial reasoning, GK about design history, and hands-on studio skills. Strong in product design, communication, film & interaction design.",
+links:{website:{url:"https://www.nid.edu",label:"Official Website",icon:"🌐"},admissions:{url:"https://admissions.nid.edu",label:"NID Admissions",icon:"🎓"},examApply:{url:"https://admissions.nid.edu/nid/reg/login.php",label:"Apply NID DAT",icon:"✏️"},scholarship:{url:"https://www.nid.edu/scholarships",label:"Scholarships",icon:"💰"},hostel:{url:"https://www.nid.edu/campus-life",label:"Campus Life",icon:"🏠"},placement:{url:"https://www.nid.edu/placements",label:"Placements",icon:"💼"},nirf:{url:"https://www.nirfindia.org",label:"NIRF Ranking",icon:"🏆"},brochure:{url:"https://admissions.nid.edu/nid/reg/guideline.php",label:"Admission Brochure",icon:"📄"}}
+},
+{id:11,name:"BITS Pilani",short:"BITS-P",icon:"⚙️",nirf:25,location:"Pilani, Rajasthan",region:"north",type:"deemed",tags:["deemed","autonomous"],streams:["engineering","it","science","pharmacy"],exams:["BITSAT"],annualFees:5.8,eligibility:"Min 75% in PCM (or PCB for Pharmacy); Min 60% individually each; BITSAT score ≥ threshold",process:"1. BITSAT Application (Jan–Mar) → 2. BITSAT Online Exam (May–Jun) → 3. Score Submission → 4. Campus & Branch Choice Filling → 5. Iteration-based Allotment → 6. Fee Payment → 7. Reporting",applyWindow:"BITSAT Registration: Jan–Mar | Exam: May–Jun | Allotment: Jun–Jul | Admission: Jul",fees:"₹5.8L/year (Pilani campus); Goa/Hyderabad slightly less",totalFees:"~₹23L for 4-yr BTech",scholarships:[{name:"BITS Merit Scholarship",detail:"BITSAT score ≥400/450: significant fee concession"},{name:"Dr. C.R. Mirchandani Scholarship",detail:"Need-based for deserving students across all campuses"},{name:"Reliance/Infosys Scholarship",detail:"External merit scholarships available for BITS students"}],cutoff:"CS Pilani: BITSAT ~375–390 | CS Goa: ~355–375 | Pharma: ~305",courses:"BTech, BE (Hons), BPharm, MSc (Dual), ME, MPharm, MBA, PhD",duration:"BTech: 4 yrs | Dual Degree: 5 yrs",placement:"Avg ₹17–19 LPA | Highest ₹1 Cr+ | Google, Amazon, Goldman Sachs, DE Shaw",facilities:[{icon:"🏠",name:"Hostels",detail:"14 hostels; mandatory residential campus; 24x7 security"},{icon:"🍽️",name:"Dining",detail:"Multiple mess halls; D-Mart nearby; 10+ campus eateries"},{icon:"📚",name:"Library",detail:"Central library with 24x7 access; vast digital resources"},{icon:"🏋️",name:"Sports Complex",detail:"Olympic pool, tennis, cricket stadium, athletics, indoor sports"},{icon:"🏭",name:"Practice School",detail:"Unique PS: 5-month mandatory industry internship — globally unique"},{icon:"🔬",name:"Research",detail:"BITS Research; nanotech, biotech, quantum computing labs"},{icon:"🌐",name:"Network",detail:"Gigabit fibre + Wi-Fi; own data centre; 24x7 internet"},{icon:"🎭",name:"OASIS",detail:"Annual cultural & sports fest; one of India's largest college fests"},{icon:"🏦",name:"Banking",detail:"HDFC, SBI ATMs; student banking services on campus"},{icon:"🛒",name:"Campus Mall",detail:"Supermarket, fast food, pharmacy, laundry on campus"},{icon:"🤝",name:"BITSAA Alumni",detail:"100,000+ alumni; massive Silicon Valley connect"},{icon:"🌐",name:"3+1 Campuses",detail:"Pilani, Goa, Hyderabad in India; Dubai international campus"}],campusRating:4,detail:"BITS Pilani est. 1964 — India's top private deemed university. No JEE required — BITSAT only. Unique Practice School (PS) program: mandatory 5-month industry internship at top companies globally. Very strong alumni network in US tech (Google, Microsoft, Meta, etc.).",
+links:{website:{url:"https://www.bits-pilani.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://www.bitsadmission.com",label:"BITS Admissions",icon:"🎓"},examApply:{url:"https://www.bitsadmission.com/bitsatapplication.aspx",label:"Apply BITSAT",icon:"✏️"},scholarship:{url:"https://www.bits-pilani.ac.in/pilani/scholarships",label:"Scholarships",icon:"💰"},hostel:{url:"https://www.bits-pilani.ac.in/pilani/campus-life",label:"Campus & Hostels",icon:"🏠"},placement:{url:"https://www.bits-pilani.ac.in/pilani/placements",label:"Placement Data",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Engineering",label:"NIRF Ranking",icon:"🏆"},brochure:{url:"https://www.bitsadmission.com/bitsat2025.aspx",label:"BITSAT Brochure",icon:"📄"}}
+},
+{id:12,name:"Delhi University",short:"DU",icon:"📚",nirf:11,location:"North & South Campus, New Delhi",region:"north",type:"govt",tags:["central-uni"],streams:["arts","science","commerce","management","education"],exams:["CUET (UG)"],annualFees:0.3,eligibility:"Class 12 in relevant stream; CUET UG score; Min 50–60% in Class 12 depending on programme",process:"1. CUET UG Registration (Feb–Mar) → 2. CUET UG Exam (May) → 3. DU CSAS Portal — programme preference filling → 4. Merit-based Seat Allotment (multiple rounds) → 5. Online Admission & Fee Payment",applyWindow:"CUET Registration: Feb–Mar | Exam: May | DU CSAS: Jun–Jul | Admission: Jul–Sep",fees:"₹10,000–30,000/year (government-subsidised)",totalFees:"₹40K–1.5L for 3–4 yr UG programme",scholarships:[{name:"DU Merit Scholarship",detail:"Top 1% students per department; cash award"},{name:"SC/ST/OBC/EWS Scholarship",detail:"Full fee waiver + stipend via Central Govt NSP"},{name:"Post-Matric Scholarship",detail:"Via state governments for reserved category students"}],cutoff:"BA (H) Economics (SRCC): CUET 190+/200 | BSc (H) Maths (Hindu): 175+ | B.Com (H): 185+",courses:"BA (Hons), BSc (Hons), B.Com (Hons), BMS, BCA, B.El.Ed, LLB and 50+ programmes across 90+ colleges",duration:"3 yrs (NEP 4-yr with multiple exit options from 2024)",placement:"SRCC, Miranda House, LSR, Hansraj — Avg ₹5–12 LPA depending on college",facilities:[{icon:"📚",name:"Libraries",detail:"Each college has own library; DU Central Library has 10L+ volumes"},{icon:"🏠",name:"Hostels",detail:"College-specific hostels; limited seats; priority to distance students"},{icon:"🏋️",name:"Sports",detail:"Inter-college sports; DU interzonal games; each college has ground"},{icon:"🎭",name:"Cultural Fests",detail:"Motilal Fest, Aura (LSR), Crossroads (Hansraj) — among India's best"},{icon:"🌐",name:"OPAC & Wi-Fi",detail:"DU digital library; college-level Wi-Fi; INFLIBNET access"},{icon:"🍽️",name:"Canteens",detail:"Each college has subsidised canteen; iconic 'dhaba culture'"},{icon:"🤝",name:"Societies",detail:"200+ student societies: debating, drama, music, NSS, NCC, film clubs"},{icon:"🚇",name:"Metro Access",detail:"North Campus: Vishwavidyalaya; South Campus: Hauz Khas metro"},{icon:"🎓",name:"Placement Cells",detail:"Active placement cells in SRCC, Ramjas, LSR, Hindu, Venky"},{icon:"💼",name:"Internships",detail:"Strong links with media houses, NGOs, law firms, corporates"},{icon:"🌳",name:"Heritage Campus",detail:"North Campus: stunning Gothic/colonial architecture; UNESCO heritage"},{icon:"♿",name:"Accessibility",detail:"Ramps, lifts; accessible facilities across major colleges"}],campusRating:4,detail:"Delhi University — 90+ affiliated colleges. SRCC for Commerce, Miranda House for Arts (NIRF #1 college), Hindu College for Sciences. Admission 100% CUET-based since 2022. North Campus features iconic heritage architecture. Very affordable — best value quality education in India.",
+links:{website:{url:"https://www.du.ac.in",label:"DU Official Website",icon:"🌐"},admissions:{url:"https://ugadmission.uod.ac.in",label:"DU UG Admission (CSAS)",icon:"🎓"},examApply:{url:"https://cuet.nta.nic.in",label:"Apply CUET UG (NTA)",icon:"✏️"},scholarship:{url:"https://scholarships.gov.in",label:"NSP Scholarships (GoI)",icon:"💰"},hostel:{url:"https://du.ac.in/du/index.php?page=hostel",label:"Hostel Info",icon:"🏠"},placement:{url:"https://du.ac.in/du/index.php?page=placement",label:"Placement Cell",icon:"💼"},nirf:{url:"https://www.nirfindia.org/University",label:"NIRF Ranking",icon:"🏆"},brochure:{url:"https://ugadmission.uod.ac.in/public/storage/information_bulletin/UG_Admission_Bulletin.pdf",label:"UG Admission Bulletin",icon:"📄"}}
+},
+{id:13,name:"NIT Trichy",short:"NITT",icon:"🔧",nirf:8,location:"Tiruchirappalli, Tamil Nadu",region:"south",type:"govt",tags:["autonomous","nit"],streams:["engineering","it","science"],exams:["JEE Main"],annualFees:1.5,eligibility:"75% in PCM (65% SC/ST); JEE Main qualifying percentile; Indian national",process:"1. JEE Main (Jan & Apr) → 2. JoSAA Online Counselling → 3. NIT seat preference filling → 4. Allotment (multiple rounds) → 5. Document Verification → 6. Fee Payment",applyWindow:"JEE Main: Jan & Apr | JoSAA Counselling: Jun–Jul | Reporting: Jul",fees:"₹1.5L/year tuition + Hostel & Mess ~₹60–80K/yr",totalFees:"~₹6L for 4-yr BTech",scholarships:[{name:"NITT Merit Scholarship",detail:"Top academic performers each semester — cash award"},{name:"SC/ST Central Sector Scholarship",detail:"Full fee waiver + ₹1,000–2,000/month stipend"},{name:"PM Vidya Lakshmi",detail:"Education loans up to ₹7.5L collateral-free via bank portal"}],cutoff:"CSE: JEE Main Rank <5,000 (Home State) | ECE: <8,000 | Civil: <18,000",courses:"BTech (12 branches), MTech, MBA, MCA, MSc, PhD",duration:"BTech: 4 yrs",placement:"Avg ₹13–17 LPA | 1,000+ companies | TCS, Cognizant, Zoho, Amazon, core engineering",facilities:[{icon:"🏠",name:"Hostels",detail:"16 hostels; 2,000+ capacity; separate boys/girls blocks"},{icon:"🍽️",name:"Mess Halls",detail:"4 mess halls; veg & non-veg; student mess committee"},{icon:"📚",name:"Central Library",detail:"2L+ books; NPTEL, Springer, IEEE Xplore digital access"},{icon:"🏋️",name:"Sports",detail:"Cricket, football, basketball, swimming pool, volleyball, gym"},{icon:"🔬",name:"Labs",detail:"Well-equipped labs for all departments; 3D printing facility"},{icon:"🌐",name:"Internet",detail:"NKN high-speed campus Wi-Fi; 500+ computer centre"},{icon:"🎭",name:"Pragyan & Festember",detail:"Pragyan (int'l tech fest), Festember (cultural) — massive events"},{icon:"🏥",name:"Health Centre",detail:"24x7 doctor on campus; ambulance; emergency services"},{icon:"🚌",name:"Transport",detail:"College bus to Trichy city; Tiruchirappalli railway station 10 km"},{icon:"🤝",name:"Placement Office",detail:"SAP-based system; 1,000+ companies; dedicated TPO team"},{icon:"🌳",name:"Green Campus",detail:"800+ acres certified green campus on banks of River Cauvery"},{icon:"💡",name:"NITT-TBI",detail:"Technology Business Incubator; startup funding; DPIIT-recognised"}],campusRating:4,detail:"NIT Trichy est. 1964 (originally REC Trichy) — India's #1 NIT (NIRF Overall Rank 8). JoSAA: 30% Home State + 70% Other State quota. Stunning 800-acre green campus on River Cauvery. Pragyan is India's largest university tech fest.",
+links:{website:{url:"https://www.nitt.edu",label:"Official Website",icon:"🌐"},admissions:{url:"https://josaa.nic.in",label:"JoSAA Counselling Portal",icon:"🎓"},examApply:{url:"https://jeemain.nta.ac.in",label:"Apply JEE Main (NTA)",icon:"✏️"},scholarship:{url:"https://www.nitt.edu/home/students/scholarships.html",label:"Scholarships",icon:"💰"},hostel:{url:"https://www.nitt.edu/home/students/hostels.html",label:"Hostel Info",icon:"🏠"},placement:{url:"https://www.nitt.edu/home/training_and_placement/",label:"Placement Statistics",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Engineering",label:"NIRF Engineering Rank",icon:"🏆"},brochure:{url:"https://www.nitt.edu/home/academics/programmes.html",label:"Academic Programmes",icon:"📄"}}
+},
+{id:14,name:"VIT Vellore",short:"VIT",icon:"⚙️",nirf:11,location:"Vellore, Tamil Nadu",region:"south",type:"deemed",tags:["deemed","private"],streams:["engineering","it","science"],exams:["VITEEE"],annualFees:2.2,eligibility:"60% aggregate in PCM/PCB; Age ≤22 yrs; VITEEE qualifying score",process:"1. VIT Application (Nov–Feb) → 2. VITEEE Online Exam (Apr) → 3. Online Counselling with VITEEE rank → 4. Branch & Campus slot booking → 5. Fee Payment → 6. Reporting",applyWindow:"Application: Nov–Feb | VITEEE: Apr | Counselling: Apr–May | Reporting: Jun",fees:"₹2.2L/year",totalFees:"₹8.8L for 4-yr BTech",scholarships:[{name:"VIT Top Ranker Scholarship",detail:"VITEEE rank 1–50: 100% tuition waiver"},{name:"VIT Merit Scholarship",detail:"Rank 51–5,000: 50% tuition waiver"},{name:"Sports/Cultural Scholarship",detail:"National/international achievers — up to 100% waiver"}],cutoff:"VITEEE score varies by year; CSE, ECE are most competitive branches",courses:"BTech (40+ specialisations including AI, Data Science, Blockchain), MTech, MBA, MSc, MCA",duration:"BTech: 4 yrs",placement:"Avg ₹7–10 LPA | 10,000+ offers/yr | TCS, Infosys, Microsoft, Cognizant, Amazon",facilities:[{icon:"🏠",name:"Hostels",detail:"Separate hostels; food + laundry included; 24x7 security"},{icon:"🍽️",name:"Dining",detail:"Multiple mess halls; 20+ cuisine food court; Domino's on campus"},{icon:"📚",name:"Library",detail:"Anna Centenary Library; 2.5L+ volumes; 24x7 e-library"},{icon:"🏋️",name:"Sports",detail:"Olympic pool, cricket, football, kabaddi, gym, yoga, martial arts"},{icon:"🔬",name:"Research",detail:"1,000+ publications/yr; Centre for Advanced Research; Samsung lab"},{icon:"🌐",name:"Tech Infrastructure",detail:"High-speed Wi-Fi; Samsung Innovation Centre; IoT lab"},{icon:"🎭",name:"Riviera & Gravitas",detail:"Riviera (cultural, 25,000+ visitors), Gravitas (tech fest)"},{icon:"🏥",name:"Health",detail:"MIOT hospital tie-up; 24x7 on-campus clinic; ambulance"},{icon:"🚌",name:"Transport",detail:"VITMEES bus: 40+ routes across Tamil Nadu & Andhra"},{icon:"🛒",name:"Campus Mall",detail:"Banks, ATMs, pharmacy, supermarket, salon on campus"},{icon:"🌍",name:"International",detail:"5,000+ students from 60+ countries; exchange programmes"},{icon:"💡",name:"TIDES Incubator",detail:"Tech Transfer Hub; DPIIT-recognised startup incubation"}],campusRating:4,detail:"VIT est. 1984 — India's largest private engineering university. 4 campuses: Vellore, Chennai, Bhopal, Amaravati (AP). Known for massive placement activity: 10,000+ job offers annually. International community of 5,000+ students from 60+ countries.",
+links:{website:{url:"https://vit.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://vit.ac.in/admissions",label:"VIT Admissions",icon:"🎓"},examApply:{url:"https://viteee.vit.ac.in",label:"Apply VITEEE",icon:"✏️"},scholarship:{url:"https://vit.ac.in/scholarships",label:"Scholarships",icon:"💰"},hostel:{url:"https://vit.ac.in/hostel",label:"Hostel & Accommodation",icon:"🏠"},placement:{url:"https://cdn.vit.ac.in/vit_placement/",label:"Placement Report",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Engineering",label:"NIRF Ranking",icon:"🏆"},brochure:{url:"https://viteee.vit.ac.in/information-brochure",label:"VITEEE Brochure",icon:"📄"}}
+},
+{id:15,name:"IISc Bangalore",short:"IISc",icon:"🔬",nirf:1,location:"Malleshwaram, Bengaluru",region:"south",type:"govt",tags:["autonomous","central-uni"],streams:["science","engineering","it"],exams:["JEE Advanced","KVPY/SCI-GATE"],annualFees:0.5,eligibility:"BS Research: Top JEE Advanced rank OR KVPY SX top scores; 60% PCM in Class 12",process:"1. Apply via JEE Advanced (BS Research) OR KVPY/SCI → 2. Merit-based shortlist → 3. Direct admission (no interview for JEE route)",applyWindow:"BS Research via JEE Advanced: Apply Apr–May | KVPY: Oct application | Admission: Jun–Jul",fees:"₹50K/year (heavily subsidised by GoI)",totalFees:"~₹2L for 4-yr BS Research programme",scholarships:[{name:"KVPY-SX Fellowship",detail:"₹5,000–7,000/month stipend for ALL BS Research students for 4 years"},{name:"INSPIRE Scholarship (DST)",detail:"₹80,000/year for top science BSc students"},{name:"IISc Need-based Aid",detail:"Additional financial support for economically weaker students"}],cutoff:"JEE Advanced top ~100–300 rank (Gen); KVPY SX top 500 scorers",courses:"BS Research (4 yrs), BE (4 yrs), MTech, ME, MSc Research, PhD",duration:"BS: 4 yrs | BE: 4 yrs",placement:"Most BS/BE graduates pursue PhD; MTech industry placement Avg ₹25–30 LPA",facilities:[{icon:"🔬",name:"World-class Labs",detail:"300+ research labs; quantum computing, aerospace, genomics, photonics"},{icon:"🏠",name:"Fully Residential",detail:"All students housed on campus; 24x7 security; peaceful environment"},{icon:"📚",name:"JRD Tata Library",detail:"South Asia's finest science library; 24x7 access; all major journals"},{icon:"🌳",name:"400-acre Garden Campus",detail:"68 tree species; peacocks on campus; one of India's most beautiful"},{icon:"🏋️",name:"Sports",detail:"Olympic pool, tennis, cricket, fitness centre, jogging tracks"},{icon:"🍽️",name:"Dining Halls",detail:"3 dining halls; subsidised meals; multiple cuisines available"},{icon:"🌐",name:"Supercomputing",detail:"SID HPC cluster; one of India's fastest academic supercomputers"},{icon:"🎭",name:"IISc Open Day",detail:"Annual science showcase; music, drama, astronomy clubs"},{icon:"🏥",name:"Health Centre",detail:"24x7 on-campus health centre; specialists visiting regularly"},{icon:"🤝",name:"Industry Collaborations",detail:"STPF; 200+ industry tie-ups; Airbus, Boeing, GE, NASA projects"},{icon:"🌍",name:"Global Partnerships",detail:"ETH Zurich, IISc-MIT collaboration; joint PhD programmes"},{icon:"🚲",name:"Eco-friendly Campus",detail:"Cycle-friendly; EVs; solar energy; zero-plastic initiatives"}],campusRating:5,detail:"IISc est. 1909 — India's #1 research university (NIRF Overall Rank 1). BS Research programme perfect for science enthusiasts wanting deep research. KVPY fellowship provides ₹5,000–7,000/month throughout. Stunning 400-acre garden campus in central Bangalore. Ranked in QS top 200 globally.",
+links:{website:{url:"https://www.iisc.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://www.iisc.ac.in/admissions/",label:"IISc Admissions",icon:"🎓"},examApply:{url:"https://kvpy.iisc.ac.in",label:"KVPY Portal",icon:"✏️"},jeeroute:{url:"https://jeeadv.ac.in",label:"JEE Advanced (Alt Route)",icon:"📋"},scholarship:{url:"https://www.iisc.ac.in/admissions/financial-assistance/",label:"Financial Assistance",icon:"💰"},hostel:{url:"https://www.iisc.ac.in/campus-life/hostels/",label:"Hostels & Campus",icon:"🏠"},placement:{url:"https://www.iisc.ac.in/campus-life/career-development/",label:"Career Development",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Overall",label:"NIRF Overall #1",icon:"🏆"}}
+},
+{id:16,name:"IIM Calcutta",short:"IIMC",icon:"📊",nirf:3,location:"Joka, Kolkata, West Bengal",region:"east",type:"govt",tags:["autonomous"],streams:["management"],exams:["CAT"],annualFees:13.5,eligibility:"Bachelor's degree ≥50%; CAT score; all disciplines eligible",process:"1. CAT Exam (Nov) → 2. IIMC Shortlist (Jan) → 3. WAT + Personal Interview (Feb–Apr) → 4. Composite Score evaluation → 5. Final Offer Letter",applyWindow:"CAT: Nov | WAT-PI: Feb–Apr | Joining: Jun",fees:"₹13.5L/year (₹27L for 2 yrs)",totalFees:"₹27L for 2-yr PGDM",scholarships:[{name:"IIMC Merit Scholarship",detail:"Top performers each term — cash awards"},{name:"SC/ST GoI Benefit",detail:"Fee concession as per reservation norms"},{name:"Industry Fellowship",detail:"Wipro, TCS, Aditya Birla sponsored scholarships"}],cutoff:"CAT 99+ percentile for shortlisting (varies by academic profile)",courses:"MBA (PGDM), PGDBA (joint with IIT-KGP & ISI Calcutta), FPM (PhD), MBAEx (Executive)",duration:"PGDM: 2 yrs",placement:"Avg ₹30 LPA | McKinsey, BCG, KPMG, Goldman Sachs, Bain | 100% placement",facilities:[{icon:"🏠",name:"Fully Residential",detail:"All students in AC single rooms on campus; secure environment"},{icon:"📚",name:"BC Roy Library",detail:"Bloomberg terminal, CMIE Prowess, Capital IQ; extensive collection"},{icon:"💼",name:"Case Study Rooms",detail:"120+ Harvard-style case rooms; high-tech AV systems"},{icon:"🏋️",name:"Sports",detail:"Cricket, football, volleyball, gym, swimming pool, indoor games"},{icon:"🌐",name:"Tech Infrastructure",detail:"Bloomberg, SPSS, SAP Business One, Python HPC cluster"},{icon:"🍽️",name:"Dining",detail:"IIMC mess; multiple cuisines including authentic Bengali food"},{icon:"🎭",name:"Carpe Diem",detail:"Annual cultural fest; Continuum (B-school sports championships)"},{icon:"🤝",name:"MCCI",detail:"Management Consultancy & Case Institute; premier consulting cell"},{icon:"🌳",name:"135-acre Campus",detail:"Spacious Joka campus; student-managed gardens; serene"},{icon:"🎓",name:"Placement",detail:"Dedicated placement office; 300+ companies; 100% record"},{icon:"🌍",name:"Global Exchange",detail:"Wharton, INSEAD, NUS; dual degree programmes available"},{icon:"🚌",name:"Transport",detail:"IIMC to Kolkata city; close to Netaji Subhas airport"}],campusRating:5,detail:"IIM Calcutta est. 1961 — one of the 'Big Three' IIMs. India's first IIM. Famous for finance and quantitative analytics. PGDBA is a unique joint programme with IIT Kharagpur and ISI Calcutta. Strong alumni in Indian and global finance sector.",
+links:{website:{url:"https://www.iimcal.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://www.iimcal.ac.in/pgdm/admissions",label:"PGDM Admissions",icon:"🎓"},examApply:{url:"https://iimcat.ac.in",label:"Apply CAT",icon:"✏️"},scholarship:{url:"https://www.iimcal.ac.in/pgdm/scholarships",label:"Scholarships",icon:"💰"},hostel:{url:"https://www.iimcal.ac.in/campus/hostels",label:"Campus Hostels",icon:"🏠"},placement:{url:"https://www.iimcal.ac.in/pgdm/placements",label:"Placement Report",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Management",label:"NIRF #3 Management",icon:"🏆"},brochure:{url:"https://www.iimcal.ac.in/pgdm/pgdm-programme",label:"PGDM Programme",icon:"📄"}}
+},
+{id:17,name:"Jadavpur University",short:"JU",icon:"🏛️",nirf:5,location:"Kolkata, West Bengal",region:"east",type:"govt",tags:["state-uni"],streams:["engineering","arts","science"],exams:["WBJEE","JEE Main"],annualFees:0.2,eligibility:"60% PCM Class 12 (for engineering); WBJEE qualifying rank OR JEE Main",process:"1. WBJEE Exam (Apr) → 2. WBJEE State Counselling → 3. Jadavpur University seat allotment → 4. Document Verification → 5. Admission",applyWindow:"WBJEE Registration: Jan–Mar | Exam: Apr | Counselling: Jun–Jul",fees:"₹8,000–20,000/year (state govt subsidised)",totalFees:"<₹1L for entire BTech (4 years)",scholarships:[{name:"WB State Merit Scholarship",detail:"For meritorious students — monthly stipend"},{name:"SC/ST GoWB Scholarship",detail:"Full fee waiver + stipend from WB government"},{name:"Swami Vivekananda Merit-cum-Means",detail:"WB state scholarship; ₹1,000–2,000/month"}],cutoff:"WBJEE rank: ~1,000–5,000 for top CS/EE branches",courses:"BTech, BE, B.Arch, BSc, BA (multiple departments), MTech, MA, MSc, PhD",duration:"BTech: 4 yrs | B.Arch: 5 yrs",placement:"Avg ₹8–12 LPA | TCS, Infosys, Wipro, Tata Steel, core engineering",facilities:[{icon:"📚",name:"Central Library",detail:"Vast multi-disciplinary collection; humanities & engineering sections"},{icon:"🏠",name:"Hostels",detail:"Limited boys' hostel on campus; many students in nearby PGs"},{icon:"🔬",name:"Research Labs",detail:"ACES, CMSIT innovation centres; FIST-funded labs"},{icon:"🎭",name:"Film Society",detail:"Jadavpur University Film Society — legendary in Bengali cinema culture"},{icon:"🏋️",name:"Sports",detail:"Football, cricket, athletics; strong sports culture"},{icon:"🌐",name:"Campus Network",detail:"BSNL NKN node; Wi-Fi in academic buildings"},{icon:"🌳",name:"Urban Campus",detail:"Compact vibrant urban campus; directly connected to Kolkata city"},{icon:"🤝",name:"Student Union",detail:"Vibrant elected student union; known for activism & political culture"},{icon:"🎓",name:"Research Output",detail:"500+ research publications per year; strong PhD programme"},{icon:"🚇",name:"Metro Access",detail:"Jadavpur metro station adjacent to campus (Green Line)"},{icon:"🍽️",name:"Canteen",detail:"Subsidised student canteen; iconic 'adda culture' tea stalls"},{icon:"💡",name:"Startup Incubator",detail:"JU Business Incubator; DPIIT supported; FIST-funded labs"}],campusRating:3,detail:"Jadavpur University est. 1955 — one of India's finest public universities. Most affordable quality engineering education. Known for strong academics, vibrant student life, political activism. Arts, Social Sciences, and Engineering all world-class. Adjacent to Jadavpur metro station.",
+links:{website:{url:"https://jadavpuruniversity.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://jadavpuruniversity.in/admission/",label:"Admission Info",icon:"🎓"},examApply:{url:"https://wbjeeb.nic.in",label:"Apply WBJEE",icon:"✏️"},scholarship:{url:"https://scholarships.gov.in",label:"NSP Scholarships (GoI)",icon:"💰"},hostel:{url:"https://jadavpuruniversity.in/hostel/",label:"Hostel Details",icon:"🏠"},placement:{url:"https://jadavpuruniversity.in/placement/",label:"Placement Cell",icon:"💼"},nirf:{url:"https://www.nirfindia.org/University",label:"NIRF University Ranking",icon:"🏆"},brochure:{url:"https://jadavpuruniversity.in/admission/prospectus/",label:"Prospectus",icon:"📄"}}
+},
+{id:18,name:"XLRI Jamshedpur",short:"XLRI",icon:"📊",nirf:7,location:"Circuit House Area, Jamshedpur, Jharkhand",region:"east",type:"deemed",tags:["deemed","autonomous"],streams:["management"],exams:["XAT"],annualFees:13.3,eligibility:"Bachelor's degree ≥55% in any discipline; XAT score; work experience preferred (not mandatory for BM)",process:"1. XAT Registration (Oct–Dec) → 2. XAT Exam (Jan first Sunday) → 3. XLRI Shortlist → 4. Group Discussion + Personal Interview → 5. Final Offer Letter",applyWindow:"XAT Registration: Oct–Dec | Exam: Jan | GD-PI: Feb–Mar | Joining: Jun",fees:"₹13.3L/year (₹26.6L total)",totalFees:"₹26.6L for 2-yr PGDM",scholarships:[{name:"XLRI Need-based Scholarship",detail:"For economically weaker students; partial to full tuition relief"},{name:"Tata/Jharkhand Scholarship",detail:"For meritorious tribal and SC/ST students"}],cutoff:"XAT: 95+ percentile for BM (Business Management); 90+ for HRM",courses:"PGDM — Business Management (BM), Human Resource Management (HRM), PGDM-GM (General Mgmt), GMP (1-yr Executive)",duration:"PGDM: 2 yrs | GMP: 1 yr",placement:"Avg ₹28–32 LPA | Top HR, consulting, finance firms globally",facilities:[{icon:"🏠",name:"Fully Residential",detail:"Jesuit tradition: serene, secure residential campus"},{icon:"📚",name:"P.J. Mascarenhas Library",detail:"Top-ranked B-school library; 1L+ management books & journals"},{icon:"💼",name:"Case Study Rooms",detail:"100+ AC case rooms; seminar halls; arbitration rooms"},{icon:"🏋️",name:"Sports",detail:"Football, cricket, basketball, swimming pool, gym, table tennis"},{icon:"🎭",name:"SPANDAN",detail:"Annual B-school cultural & sports extravaganza"},{icon:"🌐",name:"Tech",detail:"Bloomberg terminals; EBSCO, ProQuest databases; business labs"},{icon:"🤝",name:"XLRI Ethics Centre",detail:"India's only dedicated business ethics centre in a B-school"},{icon:"🍽️",name:"Central Dining",detail:"Multiple cuisines; mess committee-managed; excellent food"},{icon:"🌳",name:"Green Campus",detail:"10-acre lush Jamshedpur campus; serene & peaceful environment"},{icon:"🎓",name:"HR Simulation Lab",detail:"Dedicated HR lab for HRM students; unique in India"},{icon:"🌍",name:"Global Accreditation",detail:"AACSB accredited; exchange with 50+ global B-schools"},{icon:"⛪",name:"Jesuit Heritage",detail:"Chapel on campus; 75-year Jesuit value-based education tradition"}],campusRating:4,detail:"XLRI est. 1949 — India's top HRM school and elite B-school overall. Uses XAT instead of CAT. Only MBA in India with a dedicated Ethics Centre. Jesuit tradition emphasises ethics, social responsibility. Strong alumni in HR, consulting, finance globally. AACSB accredited since 2006.",
+links:{website:{url:"https://www.xlri.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://www.xlri.ac.in/pgdm-bm/admissions",label:"PGDM Admissions",icon:"🎓"},examApply:{url:"https://xatonline.in",label:"Apply XAT",icon:"✏️"},scholarship:{url:"https://www.xlri.ac.in/financial-aid",label:"Financial Aid",icon:"💰"},hostel:{url:"https://www.xlri.ac.in/campus-life/hostels",label:"Campus & Hostels",icon:"🏠"},placement:{url:"https://www.xlri.ac.in/pgdm-bm/placements",label:"Placement Report",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Management",label:"NIRF #7 Management",icon:"🏆"},brochure:{url:"https://www.xlri.ac.in/pgdm-bm/programme-overview",label:"Programme Brochure",icon:"📄"}}
+},
+{id:19,name:"SRM Institute of Science & Technology",short:"SRMIST",icon:"🏥",nirf:36,location:"Kattankulathur, Chennai, Tamil Nadu",region:"south",type:"private",tags:["deemed","private"],streams:["engineering","it","medical","management","science","arts"],exams:["SRMJEEE","JEE Main","NEET UG (Medical)"],annualFees:3.0,eligibility:"60% PCM for Engineering; 55% PCB for Medical; respective entrance exam",process:"1. SRMJEEE / JEE Main / NEET scores → 2. SRM Online Application → 3. Online Counselling → 4. Seat Allotment → 5. Fee Payment → 6. Reporting",applyWindow:"SRMJEEE: Jan–Apr | JEE/NEET scores: Jun | Counselling: Apr–Jun",fees:"₹3L/year engineering; ₹6L/year MBBS",totalFees:"₹12L for BTech; ₹24–30L for MBBS",scholarships:[{name:"SRM Rank Scholarship",detail:"SRMJEEE Rank 1–100: 100% tuition; 101–500: 75%"},{name:"JEE Main Scholarship",detail:"JEE rank <5,000: 50% tuition waiver"},{name:"Sports Scholarship",detail:"National/international level sports achievers — full waiver"}],cutoff:"Score/rank based for each exam; varies by branch and campus",courses:"BTech (45+ specialisations), MBBS, BDS, BBA, MBA, BSc, BA, B.Com, BCA, MCA",duration:"BTech: 4 yrs | MBBS: 5.5 yrs",placement:"Avg ₹5–8 LPA | 1,000+ companies | TCS, Infosys, Wipro, Zoho, Samsung",facilities:[{icon:"🏥",name:"Teaching Hospital",detail:"SRM Medical College Hospital; 2,000+ beds; all specialities on campus"},{icon:"🏠",name:"Hostels",detail:"Separate boys/girls hostels; food + laundry + security included"},{icon:"🔬",name:"Research Centres",detail:"Centre for Stem Cell Research; 30+ research centres; DRDO tie-up"},{icon:"🍽️",name:"Food Courts",detail:"15+ eateries; mess for hostel; Domino's, McDonald's, Subway"},{icon:"🏋️",name:"Sports Complex",detail:"Cricket, pool, football, tennis, indoor sports; massive grounds"},{icon:"📚",name:"Library",detail:"2.5L+ books; 24x7 digital resources; IEEE, Elsevier access"},{icon:"🌐",name:"Digital Labs",detail:"Samsung Innovation Lab; IoT lab; IBM Innovation Centre"},{icon:"🎭",name:"Aarambam & CEAT",detail:"Cultural fest; sports fest; 10,000+ student participants"},{icon:"🚌",name:"Transport",detail:"40+ bus routes across Chennai & surrounding districts"},{icon:"🛒",name:"Campus Life",detail:"Shopping complex, multiple banks, ATMs, salon on campus"},{icon:"🌍",name:"International",detail:"3,000+ international students from 50+ countries"},{icon:"🏫",name:"4 Campuses",detail:"Kattankulathur, Vadapalani, Ramapuram, Delhi NCR"}],campusRating:4,detail:"SRM est. 1985 (formerly SRM University). 50,000+ students across 4 campuses. SRM Medical College Hospital with 2,000+ beds is unique. IBM, Samsung, Microsoft innovation centres on campus. Good for students wanting diverse programme choices under one roof.",
+links:{website:{url:"https://www.srmist.edu.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://www.srmist.edu.in/admissions/",label:"SRM Admissions",icon:"🎓"},examApply:{url:"https://www.srmist.edu.in/engineering/srmjeee/",label:"Apply SRMJEEE",icon:"✏️"},scholarship:{url:"https://www.srmist.edu.in/scholarships/",label:"Scholarships",icon:"💰"},hostel:{url:"https://www.srmist.edu.in/campus-life/hostel/",label:"Hostel Info",icon:"🏠"},placement:{url:"https://www.srmist.edu.in/placements/",label:"Placements",icon:"💼"},nirf:{url:"https://www.nirfindia.org/University",label:"NIRF Ranking",icon:"🏆"},brochure:{url:"https://www.srmist.edu.in/admissions/programme/",label:"Programme Details",icon:"📄"}}
+},
+{id:20,name:"IIT Roorkee",short:"IITR",icon:"🔧",nirf:6,location:"Roorkee, Uttarakhand",region:"north",type:"govt",tags:["autonomous","iit"],streams:["engineering","science","it","management"],exams:["JEE Advanced"],annualFees:3,eligibility:"75% PCM Class 12 (65% SC/ST); JEE Advanced qualifying rank",process:"JEE Main → JEE Advanced → JoSAA Counselling → Seat Allotment → Reporting",applyWindow:"JEE Main: Jan & Apr | JEE Advanced: May | JoSAA: Jun–Jul",fees:"₹2.2L/year tuition",totalFees:"~₹9L for 4-yr BTech",scholarships:[{name:"Institute Free Studentship",detail:"Need-based; family income <₹1L — full fee waiver"},{name:"SC/ST Scholarship",detail:"Full fee waiver under GoI norms"},{name:"Dept Merit Scholarship",detail:"Top performers per department each semester"}],cutoff:"CSE: JEE Advanced Rank <700 | Civil: <4,000 | EE: <1,500",courses:"BTech, B.Arch (5 yrs), MBA (DoMS), MTech, MSc, PhD",duration:"BTech: 4 yrs | B.Arch: 5 yrs",placement:"Avg ₹18–20 LPA | India's oldest technical institution (est. 1847)",facilities:[{icon:"🏠",name:"Hostels",detail:"12 student hostels; heritage Lala Lajpat Rai Bhawan among them"},{icon:"📚",name:"James Thomason Library",detail:"Historic 1847 library; 2L+ volumes; 24x7 digital access"},{icon:"🏋️",name:"Sports Complex",detail:"Olympic pool, cricket, tennis, hockey, athletics, gym"},{icon:"🔬",name:"Research Institutes",detail:"AHEC, CESE, Disaster Mitigation & Management Centre; 150+ labs"},{icon:"🌐",name:"NKN Network",detail:"National Knowledge Network node; gigabit campus Wi-Fi"},{icon:"🎭",name:"Thomso & Cognizance",detail:"Annual cultural & tech fests; massive all-India participation"},{icon:"🏥",name:"Campus Hospital",detail:"IIT Roorkee hospital; specialist tie-ups in Roorkee city"},{icon:"🌳",name:"Heritage Campus",detail:"365-acre campus; Asia's oldest engineering institution buildings"},{icon:"🚌",name:"Transport",detail:"Campus bus service; Roorkee railway station 2 km"},{icon:"🏛️",name:"B.Arch Programme",detail:"Architecture alongside BTech; iconic colonial campus for inspiration"},{icon:"🌊",name:"Location Bonus",detail:"Near Haridwar, Rishikesh; Himalayan foothills; great quality of life"},{icon:"💡",name:"TIDES Incubator",detail:"Startup incubator; semiconductor Centre of Excellence"}],campusRating:4,detail:"IIT Roorkee est. 1847 as Thomason College — oldest technical institution in Asia. Offers B.Arch alongside BTech. Located in Himalayan foothills. Unique colonial heritage architecture. Close to Haridwar & Rishikesh.",
+links:{website:{url:"https://www.iitr.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://www.iitr.ac.in/admissions/",label:"Admissions",icon:"🎓"},examApply:{url:"https://jeemain.nta.ac.in",label:"Apply JEE Main",icon:"✏️"},josaa:{url:"https://josaa.nic.in",label:"JoSAA Counselling",icon:"📋"},scholarship:{url:"https://www.iitr.ac.in/academics/pages/Scholarship.html",label:"Scholarships",icon:"💰"},hostel:{url:"https://www.iitr.ac.in/campus/pages/Hostels.html",label:"Hostels",icon:"🏠"},placement:{url:"https://www.iitr.ac.in/placement/",label:"Placement Cell",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Engineering",label:"NIRF Engineering Rank",icon:"🏆"}}
+},
+{id:21,name:"Amity University",short:"AMITY",icon:"🏢",nirf:50,location:"Noida, UP (HQ) + 15 campuses PAN India",region:"north",type:"private",tags:["deemed","private"],streams:["engineering","management","arts","media","law","it","design"],exams:["ASAT","JEE Main / CUET (accepted)"],annualFees:3.5,eligibility:"Class 12 pass in relevant stream; ASAT or merit-based; no strict cut-off",process:"1. Online Application → 2. ASAT Aptitude Test OR JEE/CUET score accepted → 3. Interview (for select programmes) → 4. Offer Letter → 5. Fee Payment",applyWindow:"Rolling admissions: Dec–Jun | ASAT: multiple windows",fees:"₹3–5L/year (varies by programme and campus)",totalFees:"₹12–20L for 4-yr programme",scholarships:[{name:"Amity Scholarship",detail:"JEE/CBSE toppers — up to 100% tuition waiver"},{name:"Sports/Cultural Scholarship",detail:"National-level achievers — up to 100% waiver"},{name:"Sibling Concession",detail:"10% fee concession for siblings enrolled at Amity"}],cutoff:"Merit-based; no strict entrance exam required",courses:"BTech (30+ specialisations), MBA, BBA, BA, B.Com, LLB, B.Des, BCA, BJMC, BSc, BSc Nursing",duration:"3–4 yrs UG | 2 yrs PG",placement:"Avg ₹5–8 LPA (engineering); strong corporate recruitment",facilities:[{icon:"🏠",name:"Hostels",detail:"AC hostels; 24x7 security; mess + laundry included"},{icon:"🏋️",name:"Sports",detail:"Olympic pool, cricket, football, gym; Amity Games annual event"},{icon:"📚",name:"Library",detail:"State-of-the-art library; 3L+ volumes; digital resources"},{icon:"🌐",name:"Wi-Fi & Tech",detail:"Bloomberg lab; simulation labs; smart classrooms"},{icon:"🎭",name:"Cultural",detail:"Amity Youth Fest; performing arts centre; film production studio"},{icon:"🏥",name:"Health Centre",detail:"24x7 health centre; tie-up hospitals in Noida/Delhi"},{icon:"🍽️",name:"Food Courts",detail:"Multi-cuisine food courts; international student-friendly"},{icon:"🏫",name:"15+ Campuses",detail:"India: Noida, Mumbai, Kolkata, Jaipur, Patna; Global: London, Dubai, Singapore"},{icon:"🤝",name:"Industry",detail:"Amity Innovation Incubator; 500+ industry partners"},{icon:"🌍",name:"International",detail:"Exchange with 100+ global universities; 10,000+ int'l students"},{icon:"🚌",name:"Transport",detail:"Delhi metro (Noida Sec 62) + campus shuttle"},{icon:"🎓",name:"Soft Skills",detail:"Mandatory communication labs; personality development; IELTS prep"}],campusRating:3,detail:"Amity University — India's largest private university group. 15+ India campuses + London, Dubai, Singapore. Good choice for students wanting diverse programmes with international exposure. Strong media, journalism, and business programmes. Flexible entry for most courses.",
+links:{website:{url:"https://www.amity.edu",label:"Official Website",icon:"🌐"},admissions:{url:"https://www.amity.edu/admission/",label:"Amity Admissions",icon:"🎓"},examApply:{url:"https://www.amity.edu/admission/asat.asp",label:"ASAT Application",icon:"✏️"},scholarship:{url:"https://www.amity.edu/scholarships/",label:"Scholarships",icon:"💰"},hostel:{url:"https://www.amity.edu/hostel/",label:"Hostel Info",icon:"🏠"},placement:{url:"https://www.amity.edu/placement/",label:"Placement Data",icon:"💼"},nirf:{url:"https://www.nirfindia.org/University",label:"NIRF Ranking",icon:"🏆"},brochure:{url:"https://www.amity.edu/admission/prospectus.asp",label:"Prospectus",icon:"📄"}}
+},
+{id:22,name:"ICAR-IARI New Delhi",short:"IARI",icon:"🌾",nirf:1,location:"Pusa Campus, New Delhi",region:"north",type:"govt",tags:["central-uni","autonomous"],streams:["agriculture"],exams:["ICAR AIEEA UG"],annualFees:0.3,eligibility:"60% in Class 12 with PCB/PCM/Agriculture stream; ICAR AIEEA qualifying score",process:"1. ICAR AIEEA Registration (Feb–Apr) → 2. NTA AIEEA Exam (Jun) → 3. ICAR Counselling → 4. State Agri University seat allotment → 5. Reporting",applyWindow:"ICAR AIEEA: Feb–Apr registration | Jun exam | Jul–Aug counselling",fees:"₹25,000–30,000/year (govt subsidised)",totalFees:"₹1–1.2L for 4-yr BSc Agriculture",scholarships:[{name:"ICAR Merit Scholarship",detail:"₹2,000/month for top academic rankers in agricultural sciences"},{name:"SC/ST National Scholarship",detail:"Full fee waiver + monthly stipend via GoI"},{name:"Kisan Scholarship",detail:"For children of farming families via state governments"}],cutoff:"AIEEA rank: top 10,000 across India for state agri university seats",courses:"BSc Agriculture, BSc Horticulture, BSc Forestry, BTech Agricultural Engineering, BVSc",duration:"BSc Agriculture: 4 yrs | BVSc: 5.5 yrs",placement:"Agriculture officers, farm management, agri-tech startups, ICAR research positions, state agri depts",facilities:[{icon:"🌾",name:"Experimental Farm",detail:"300-acre research farm; live crop experiments; soil science trials"},{icon:"🔬",name:"Research Labs",detail:"Advanced plant biotech, soil science, entomology, mycology labs"},{icon:"🏠",name:"Hostels",detail:"Fully residential campus; separate boys/girls hostels; subsidised"},{icon:"📚",name:"IARI Library",detail:"Extensive agri-sciences library; FAO publications; CABI access"},{icon:"🌐",name:"Digital Resources",detail:"e-library; agri databases; CABI, Agricola digital access"},{icon:"🏥",name:"Health Centre",detail:"On-campus dispensary; hospital tie-up; dental care"},{icon:"🌱",name:"Nursery & Greenhouse",detail:"Plant nursery; hydroponic greenhouse; practical training"},{icon:"🎭",name:"Krishipath Fest",detail:"Annual agri-innovation fest; rural innovation competitions"},{icon:"🚜",name:"Farm Machinery",detail:"Modern equipment training; tractor, combine harvester operation"},{icon:"🐄",name:"Livestock Farm",detail:"Dairy farm; animal husbandry training; veterinary unit"},{icon:"🌳",name:"Botanical Garden",detail:"Arboretum with 300+ plant species; research gardens"},{icon:"🤝",name:"Govt Job Pipeline",detail:"Direct route to ICAR, NABARD, state agri depts, extension services"}],campusRating:4,detail:"ICAR-IARI est. 1905 — India's premier agricultural research institution and birthplace of the Green Revolution (Dr. M.S. Swaminathan). ICAR AIEEA is the central entrance for all ICAR institutes, SAUs and Central Agricultural Universities. Extremely affordable with strong government job prospects.",
+links:{website:{url:"https://www.iari.res.in",label:"IARI Official Website",icon:"🌐"},admissions:{url:"https://icar.org.in/content/icar-aieea",label:"ICAR AIEEA Info",icon:"🎓"},examApply:{url:"https://icar.nta.ac.in",label:"Apply ICAR AIEEA (NTA)",icon:"✏️"},scholarship:{url:"https://icar.org.in/content/scholarships-fellowships",label:"ICAR Scholarships",icon:"💰"},hostel:{url:"https://www.iari.res.in/index.php/campus-life",label:"Campus Life",icon:"🏠"},nsp:{url:"https://scholarships.gov.in",label:"NSP Scholarships",icon:"📋"},nirf:{url:"https://www.nirfindia.org/Agriculture",label:"NIRF Agriculture #1",icon:"🏆"},brochure:{url:"https://icar.nta.ac.in/information-bulletin",label:"AIEEA Bulletin",icon:"📄"}}
+},
+{id:23,name:"Christ University Bangalore",short:"CHRIST",icon:"✝️",nirf:45,location:"Hosur Road, Bengaluru, Karnataka",region:"south",type:"deemed",tags:["deemed","private"],streams:["arts","commerce","management","science","media","education","law"],exams:["Christ University Entrance Test"],annualFees:1.2,eligibility:"50–60% in Class 12 relevant stream; Christ Entrance Test + Personal Interview",process:"1. Online Application (Nov–Feb) → 2. Christ Entrance Test (written) → 3. Personal Interview → 4. Merit List → 5. Admission & Fee Payment",applyWindow:"Application: Nov–Feb | Tests: Jan–Apr | Admission: Mar–Jun",fees:"₹1–1.5L/year",totalFees:"₹3–5L for 3-yr UG",scholarships:[{name:"Christ Excellence Scholarship",detail:"Top CUET/entrance scorers — 50–100% fee waiver"},{name:"Need-based Aid",detail:"Low income students — partial fee concession"},{name:"Sports/Cultural Scholarship",detail:"National/state level achievers — special consideration"}],cutoff:"Combined entrance + PI score; varies by programme",courses:"BA, B.Com, BBA, BSc, BCA, BHM, LLB, B.Ed, BJMC, MA, MBA, MCA",duration:"3 yrs UG | 2 yrs PG",placement:"Avg ₹5–8 LPA | Strong humanities, commerce, media reputation",facilities:[{icon:"🏠",name:"Hostels",detail:"Boys & girls hostels; AC rooms; mess included; value-based code"},{icon:"📚",name:"Library",detail:"Digital + physical library; 2L+ volumes; INFLIBNET, EBSCO"},{icon:"🎭",name:"Chrysalis & Jnanam",detail:"Chrysalis (cultural), Jnanam (academic) fests; performing arts"},{icon:"🏋️",name:"Sports",detail:"Football, cricket, badminton, gym; intercollegiate tournaments"},{icon:"🌐",name:"Wi-Fi & Smart Class",detail:"Campus Wi-Fi; smart classrooms; digital learning platform"},{icon:"🍽️",name:"Cafeterias",detail:"Multiple cafeterias; veg + non-veg; affordable pricing"},{icon:"⛪",name:"Multi-faith Chapel",detail:"Spiritual guidance; counselling centre; meditation room"},{icon:"🌍",name:"International",detail:"500+ int'l students; exchange programmes with 60+ global universities"},{icon:"🤝",name:"Industry Connect",detail:"Media house tie-ups, NGO links, corporate MOUs"},{icon:"🚇",name:"Metro Access",detail:"Silk Board metro nearby; central South Bangalore location"},{icon:"🎓",name:"Value Education",detail:"Mandatory ethics & value education; personality development"},{icon:"🌱",name:"NSS/NCC/Rotaract",detail:"Active community service; NCC Air/Army/Navy wings"}],campusRating:4,detail:"Christ University est. 1969 — Bangalore's most sought-after private deemed university. Known for holistic, value-based education. Multi-faith campus. Strong in humanities, commerce, media. Admission is a 2-stage process: written test + personal interview.",
+links:{website:{url:"https://christuniversity.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://admission.christuniversity.in",label:"Christ Admissions Portal",icon:"🎓"},examApply:{url:"https://admission.christuniversity.in/apply",label:"Apply Online",icon:"✏️"},scholarship:{url:"https://christuniversity.in/scholarships",label:"Scholarships",icon:"💰"},hostel:{url:"https://christuniversity.in/hostel",label:"Hostel Info",icon:"🏠"},placement:{url:"https://christuniversity.in/placement",label:"Placement Cell",icon:"💼"},nirf:{url:"https://www.nirfindia.org/University",label:"NIRF Ranking",icon:"🏆"},brochure:{url:"https://christuniversity.in/prospectus",label:"Prospectus",icon:"📄"}}
+},
+{id:24,name:"NIT Warangal",short:"NITW",icon:"🔧",nirf:23,location:"Warangal, Telangana",region:"south",type:"govt",tags:["autonomous","nit"],streams:["engineering","it","science","management"],exams:["JEE Main"],annualFees:1.5,eligibility:"75% PCM Class 12 (65% SC/ST); JEE Main qualifying percentile",process:"JEE Main → JoSAA Counselling → NIT Warangal seat preference → Allotment → Fee payment",applyWindow:"JEE Main: Jan & Apr | JoSAA: Jun–Jul",fees:"₹1.5L/year",totalFees:"~₹6L for 4-yr BTech",scholarships:[{name:"NITW Merit Scholarship",detail:"Top academic performers — cash award each semester"},{name:"SC/ST Central Scholarship",detail:"Full fee waiver + monthly stipend"},{name:"Telangana State Scholarship",detail:"For TS domicile students via state government"}],cutoff:"CSE: JEE Main CRL <6,000 | ECE: <10,000 | EE: <14,000",courses:"BTech (11 branches), MTech, MBA, MSc, PhD",duration:"BTech: 4 yrs",placement:"Avg ₹12–16 LPA | TCS, Infosys, Amazon, Hyundai, core engineering",facilities:[{icon:"🏠",name:"Hostels",detail:"10+ hostels; 4,000+ capacity; veg & non-veg mess included"},{icon:"📚",name:"Central Library",detail:"2L+ books; INFLIBNET; IEEE, Elsevier digital access"},{icon:"🏋️",name:"Sports",detail:"Cricket, swimming pool, tennis, football, gym, volleyball"},{icon:"🔬",name:"Labs",detail:"Dept labs; Centre for AI & Data Analytics; VLSI lab"},{icon:"🎭",name:"Technozion & Culfest",detail:"Technozion (top tech fest); Culfest (cultural); national reach"},{icon:"🌐",name:"Wi-Fi",detail:"NKN-connected campus Wi-Fi; multiple computer centres"},{icon:"🏥",name:"Health Centre",detail:"24x7 dispensary; ambulance; doctor on call; dental facility"},{icon:"🌳",name:"Green Campus",detail:"400+ acres; landscaped lawns; certified Green Campus"},{icon:"🚌",name:"Transport",detail:"College buses to Warangal city; railway station 5 km"},{icon:"🤝",name:"Placement Office",detail:"TPO: 500+ companies annually; SAP-based system"},{icon:"🎓",name:"Alumni",detail:"Strong alumni base in Hyderabad IT corridor and abroad"},{icon:"💡",name:"Innovation",detail:"NITW incubation centre; DPIIT recognised; startup funding available"}],campusRating:4,detail:"NIT Warangal est. 1959 (as REC Warangal) — one of the original NITs. Strong in CSE, ECE, and Mechanical Engineering. Technozion is one of India's most popular technical fests with 50,000+ visitors.",
+links:{website:{url:"https://www.nitw.ac.in",label:"Official Website",icon:"🌐"},admissions:{url:"https://josaa.nic.in",label:"JoSAA Counselling",icon:"🎓"},examApply:{url:"https://jeemain.nta.ac.in",label:"Apply JEE Main",icon:"✏️"},scholarship:{url:"https://www.nitw.ac.in/main/?page=scholarship",label:"Scholarships",icon:"💰"},hostel:{url:"https://www.nitw.ac.in/main/?page=hostel",label:"Hostel Info",icon:"🏠"},placement:{url:"https://nitw.ac.in/tpo/",label:"Training & Placement",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Engineering",label:"NIRF Engineering Rank",icon:"🏆"},brochure:{url:"https://www.nitw.ac.in/admissions/",label:"Admission Details",icon:"📄"}}
+},
+{id:25,name:"BITS Goa",short:"BITS-G",icon:"⚙️",nirf:28,location:"Zuarinagar, Goa",region:"west",type:"deemed",tags:["deemed","autonomous"],streams:["engineering","it","science","pharmacy"],exams:["BITSAT"],annualFees:5.5,eligibility:"75% in PCM (or PCB for Pharmacy); BITSAT score qualifying for Goa campus threshold",process:"BITSAT Application (Jan–Mar) → BITSAT Exam (May–Jun) → Score + Campus/Branch Choice → Iteration Allotment → Fee Payment → Reporting",applyWindow:"BITSAT: Jan–Mar reg | Exam: May–Jun | Allotment: Jun–Jul",fees:"₹5.5L/year",totalFees:"~₹22L for 4-yr BTech",scholarships:[{name:"BITS Merit Scholarship",detail:"BITSAT ≥400: fee concession across all campuses"},{name:"Need-based Aid",detail:"Limited seats; income-based financial support available"}],cutoff:"CSE Goa: BITSAT ~355–375 | EEE: ~340 | Mech: ~325",courses:"BTech, BPharm, MSc (Integrated Dual), ME, MPharm, PhD",duration:"BTech: 4 yrs | Dual Degree: 5 yrs",placement:"Avg ₹15–18 LPA | Top IT & finance companies; same as Pilani",facilities:[{icon:"🏖️",name:"Beach Proximity",detail:"5 km from Goa beaches — India's most unique campus lifestyle"},{icon:"🏠",name:"Hostels",detail:"Fully residential; all meals included; 24x7 security"},{icon:"🏊",name:"Sports",detail:"Swimming pool, tennis, cricket, basketball, volleyball, gym"},{icon:"🎭",name:"Waves Fest",detail:"Annual 'Waves' cultural fest — one of India's top college events"},{icon:"📚",name:"Library",detail:"Central library with same BITS digital resources; 24x7 access"},{icon:"🌐",name:"Wi-Fi",detail:"Gigabit campus Wi-Fi; same tech infrastructure as Pilani"},{icon:"🌴",name:"Tropical Campus",detail:"Most scenic engineering college campus in India bar none"},{icon:"🍽️",name:"Dining",detail:"Multiple mess halls; Goan cuisine specialty nights"},{icon:"🔬",name:"Labs",detail:"BITS quality labs; same standards as Pilani campus"},{icon:"🚌",name:"Transport",detail:"BITS buses to Vasco, Panaji, Margao; Dabolim airport 15 km"},{icon:"🤝",name:"BITSAA Alumni",detail:"Strong Bay Area alumni network; same alumni strength as Pilani"},{icon:"🌍",name:"Practice School",detail:"5-month mandatory PS industry internship; global placement stations"}],campusRating:5,detail:"BITS Goa — same curriculum and standards as BITS Pilani with India's most scenic campus setting. Tropical campus near Goa beaches. Practice School (PS) mandatory internship. 'Waves' is a nationally celebrated cultural fest. Strong Silicon Valley alumni connect.",
+links:{website:{url:"https://www.bits-pilani.ac.in/goa",label:"BITS Goa Website",icon:"🌐"},admissions:{url:"https://www.bitsadmission.com",label:"BITS Admissions",icon:"🎓"},examApply:{url:"https://www.bitsadmission.com/bitsatapplication.aspx",label:"Apply BITSAT",icon:"✏️"},scholarship:{url:"https://www.bits-pilani.ac.in/goa/scholarships",label:"Scholarships",icon:"💰"},hostel:{url:"https://www.bits-pilani.ac.in/goa/campus-life",label:"Campus & Hostel",icon:"🏠"},placement:{url:"https://www.bits-pilani.ac.in/goa/placements",label:"Placement Info",icon:"💼"},nirf:{url:"https://www.nirfindia.org/Engineering",label:"NIRF Ranking",icon:"🏆"},brochure:{url:"https://www.bitsadmission.com/bitsat2025.aspx",label:"BITSAT Brochure",icon:"📄"}}
+}];
+
+const EXAMS=[
+{name:"JEE Main",date:"Jan & Apr 2026",appOpen:"Jan 2026",appClose:"Mar 2026",color:"var(--sf)",conducting:"NTA",streams:"Engineering & Architecture — NITs, IIITs, CFTIs",mode:"Online CBT",fees:"₹1,000 Gen | ₹500 SC/ST/Girls",applyUrl:"https://jeemain.nta.ac.in",infoUrl:"https://nta.ac.in/jeemain",eligibility:"Class 12 PCM; 75% marks (65% SC/ST); Age ≤25",windowMonths:[1,2,3]},
+{name:"JEE Advanced",date:"May 2026",appOpen:"Apr 2026",appClose:"May 2026",color:"var(--sfl)",conducting:"IIT Kanpur (2026)",streams:"23 IITs — BTech, BS, Dual Degree",mode:"Online CBT (2 papers)",fees:"₹3,500 Gen | ₹1,750 SC/ST/Girls",applyUrl:"https://jeeadv.ac.in",infoUrl:"https://jeeadv.ac.in",eligibility:"Top 2.5% in JEE Main; max 2 attempts in 2 consecutive years",windowMonths:[4,5]},
+{name:"NEET UG",date:"May 2026",appOpen:"Feb 2026",appClose:"Mar 2026",color:"var(--rs)",conducting:"NTA",streams:"MBBS, BDS, BVSc, BSc Nursing (all India)",mode:"OMR Pen-Paper Offline",fees:"₹1,700 Gen | ₹1,000 SC/ST/PwD",applyUrl:"https://neet.nta.nic.in",infoUrl:"https://nta.ac.in/neet",eligibility:"Class 12 PCB; 50% marks (40% SC/ST); Age 17+",windowMonths:[2,3]},
+{name:"CAT 2026",date:"Nov/Dec 2026",appOpen:"Aug 2026",appClose:"Sep 2026",color:"var(--gd)",conducting:"IIM (rotating annually)",streams:"MBA/PGP at all 21 IIMs + 1,000+ B-schools",mode:"Online CBT (3 shifts)",fees:"₹2,400 Gen | ₹1,200 SC/ST/PwD",applyUrl:"https://iimcat.ac.in",infoUrl:"https://iimcat.ac.in",eligibility:"Bachelor's degree ≥50% (45% SC/ST); no age limit",windowMonths:[8,9]},
+{name:"CLAT 2026",date:"Dec 2025",appOpen:"Jul 2025",appClose:"Nov 2025",color:"var(--tl)",conducting:"Consortium of NLUs",streams:"BA LLB / BBA LLB at all 24 NLUs",mode:"Online CBT (2 hrs)",fees:"₹4,000 Gen | ₹3,500 SC/ST/PwD",applyUrl:"https://consortiumofnlus.ac.in/clat-2025",infoUrl:"https://consortiumofnlus.ac.in",eligibility:"Class 12 any stream; 45% marks; Age ≤20 Gen / ≤22 SC/ST",windowMonths:[7,8,9,10,11]},
+{name:"BITSAT 2026",date:"May–Jun 2026",appOpen:"Jan 2026",appClose:"Mar 2026",color:"var(--lv)",conducting:"BITS Pilani",streams:"BTech, BPharm at BITS Pilani/Goa/Hyderabad/Dubai",mode:"Online CBT (BITS own centres)",fees:"₹3,400 Gen",applyUrl:"https://www.bitsadmission.com/bitsatapplication.aspx",infoUrl:"https://www.bitsadmission.com",eligibility:"Class 12 PCM/PCB ≥75%; no JEE needed",windowMonths:[1,2,3]},
+{name:"NIFT Entrance 2026",date:"Feb 2026",appOpen:"Nov 2025",appClose:"Jan 2026",color:"var(--pu)",conducting:"NIFT",streams:"B.Des (Fashion, Textile, Comm Design) at 16 NIFTs",mode:"Online CAT+GAT + Offline Situation Test",fees:"₹2,500 Gen | ₹1,250 SC/ST",applyUrl:"https://admissions.nift.ac.in/nift/reg/login.php",infoUrl:"https://www.nift.ac.in",eligibility:"Class 12 any stream; Age ≤23 Gen / ≤28 SC/ST/OBC",windowMonths:[11,12,1]},
+{name:"NID DAT 2026",date:"Jan 2026 (Prelims)",appOpen:"Oct 2025",appClose:"Dec 2025",color:"var(--gn)",conducting:"NID Ahmedabad",streams:"B.Des, G.Dip at NID Ahmedabad & branches",mode:"Written Prelims + Studio Mains",fees:"₹3,500 Gen | ₹2,000 SC/ST",applyUrl:"https://admissions.nid.edu/nid/reg/login.php",infoUrl:"https://www.nid.edu",eligibility:"Class 12 any stream; no specific age restriction",windowMonths:[10,11,12]},
+{name:"CUET UG 2026",date:"May 2026",appOpen:"Feb 2026",appClose:"Mar 2026",color:"var(--tl)",conducting:"NTA",streams:"All Central Universities — DU, JNU, BHU, JMI, Hyderabad",mode:"Online CBT (multi-day windows)",fees:"₹750 Gen (3 subjects) | ₹550 SC/ST",applyUrl:"https://cuet.nta.nic.in",infoUrl:"https://cuet.nta.nic.in",eligibility:"Class 12 any stream; marks vary by university & programme",windowMonths:[2,3]},
+{name:"XAT 2026",date:"Jan 5, 2026",appOpen:"Jul 2025",appClose:"Dec 2025",color:"var(--gd)",conducting:"XLRI Jamshedpur",streams:"MBA at XLRI, XIMB, TAPMI, IMT, SP Jain, LBSIM…",mode:"Online CBT",fees:"₹2,200",applyUrl:"https://xatonline.in",infoUrl:"https://xatonline.in",eligibility:"Bachelor's degree any stream; no minimum % requirement",windowMonths:[7,8,9,10,11,12]},
+{name:"WBJEE 2026",date:"Apr 2026",appOpen:"Jan 2026",appClose:"Feb 2026",color:"var(--gn)",conducting:"WBJEEB (West Bengal)",streams:"BTech at WB state engineering colleges incl. Jadavpur",mode:"OMR Pen-Paper Offline",fees:"₹500 Gen | ₹400 SC/ST",applyUrl:"https://wbjeeb.nic.in",infoUrl:"https://wbjeeb.nic.in",eligibility:"Class 12 PCM; 45% in Phy+Math; WB domicile preferred",windowMonths:[1,2]},
+{name:"ICAR AIEEA 2026",date:"Jun 2026",appOpen:"Feb 2026",appClose:"Apr 2026",color:"var(--gn)",conducting:"NTA on behalf of ICAR",streams:"BSc Agri, BVSc, BFSc at SAUs & Central Agri Universities",mode:"Online CBT",fees:"₹1,000 Gen | ₹500 SC/ST",applyUrl:"https://icar.nta.ac.in",infoUrl:"https://icar.org.in/content/icar-aieea",eligibility:"Class 12 PCB/PCM/Agriculture; 50% marks (45% SC/ST)",windowMonths:[2,3,4]},
+{name:"VITEEE 2026",date:"Apr 2026",appOpen:"Nov 2025",appClose:"Feb 2026",color:"var(--lv)",conducting:"VIT University",streams:"BTech at VIT Vellore/Chennai/Bhopal/AP",mode:"Online CBT (VIT centres)",fees:"₹1,350",applyUrl:"https://viteee.vit.ac.in",infoUrl:"https://viteee.vit.ac.in",eligibility:"Class 12 PCM/PCB; 60% aggregate; Age ≤22",windowMonths:[11,12,1,2]},
+{name:"MHT-CET 2026",date:"Apr–May 2026",appOpen:"Jan 2026",appClose:"Mar 2026",color:"var(--tl)",conducting:"State CET Cell Maharashtra",streams:"BTech, BPharm, Agriculture at Maharashtra colleges",mode:"Online CBT",fees:"₹800 Gen | ₹600 SC/ST",applyUrl:"https://cetcell.mahacet.org",infoUrl:"https://cetcell.mahacet.org",eligibility:"Class 12 PCM/PCB; MH SSC/HSC; 45% marks",windowMonths:[1,2,3]},
+{name:"KCET 2026",date:"Apr 2026",appOpen:"Jan 2026",appClose:"Feb 2026",color:"var(--sf)",conducting:"KEA Karnataka",streams:"BTech, MBBS, BDS, Agriculture at Karnataka colleges",mode:"OMR Pen-Paper Offline",fees:"₹500 Gen | ₹250 SC/ST",applyUrl:"https://cetonline.karnataka.gov.in/kea",infoUrl:"https://kea.kar.nic.in",eligibility:"Class 12 PCM/PCB; KA domicile / studied in KA",windowMonths:[1,2]},
+{name:"NDA 2026",date:"Apr & Sep 2026",appOpen:"Dec 2025",appClose:"Jan 2026",color:"var(--rs)",conducting:"UPSC",streams:"Indian Army, Navy, Air Force — for 12th pass candidates",mode:"Written Exam + SSB Interview",fees:"₹100 (online application)",applyUrl:"https://upsconline.nic.in",infoUrl:"https://upsc.gov.in/examinations/active-examinations/nda",eligibility:"Class 12 PCM for Air Force/Navy; any stream for Army; Age 16.5–19.5 yrs",windowMonths:[12,1]}
+];
+
+// ── APPLICATION STATUS ──────────────────────────────────────
+// Current date: June 10, 2026
+const TODAY = new Date(2026, 5, 10); // month is 0-indexed
+const CUR_MONTH = TODAY.getMonth() + 1; // 6
+const CUR_YEAR = TODAY.getFullYear();   // 2026
+
+function getAppStatus(exam) {
+  // Map exam name to specific open/close windows for 2026 cycle
+  const windows = {
+    "JEE Main":        [{open:[2026,1,1],  close:[2026,3,31], label:"Session 2 (Apr)"}],
+    "JEE Advanced":    [{open:[2026,4,20], close:[2026,5,10], label:"2026"}],
+    "NEET UG":         [{open:[2026,2,1],  close:[2026,3,31], label:"2026"}],
+    "CAT 2026":        [{open:[2026,8,1],  close:[2026,9,30], label:"2026"}],
+    "CLAT 2026":       [{open:[2025,7,1],  close:[2025,11,30],label:"2026"}],
+    "BITSAT 2026":     [{open:[2026,1,1],  close:[2026,3,31], label:"2026"}],
+    "NIFT Entrance 2026":[{open:[2025,11,1],close:[2026,1,31],label:"2026"}],
+    "NID DAT 2026":    [{open:[2025,10,1], close:[2025,12,31],label:"2026"}],
+    "CUET UG 2026":    [{open:[2026,2,1],  close:[2026,3,31], label:"2026"}],
+    "XAT 2026":        [{open:[2025,7,1],  close:[2025,12,31],label:"2026"}],
+    "WBJEE 2026":      [{open:[2026,1,1],  close:[2026,2,28], label:"2026"}],
+    "ICAR AIEEA 2026": [{open:[2026,2,1],  close:[2026,4,30], label:"2026"}],
+    "VITEEE 2026":     [{open:[2025,11,1], close:[2026,2,28], label:"2026"}],
+    "MHT-CET 2026":    [{open:[2026,1,1],  close:[2026,3,31], label:"2026"}],
+    "KCET 2026":       [{open:[2026,1,1],  close:[2026,2,28], label:"2026"}],
+    "NDA 2026":        [{open:[2026,6,1],  close:[2026,7,15], label:"Sep 2026"}]
+  };
+  const w = windows[exam.name];
+  if(!w) return {status:"unknown", label:"Check Website"};
+  for(const win of w){
+    const open  = new Date(win.open[0],  win.open[1]-1,  win.open[2]);
+    const close = new Date(win.close[0], win.close[1]-1, win.close[2]);
+    if(TODAY >= open && TODAY <= close) return {status:"open",   label:"🟢 Open Now — Apply!"};
+    if(TODAY < open){
+      const days = Math.round((open-TODAY)/(1000*60*60*24));
+      return {status:"upcoming", label:`🔵 Opens in ~${days} days`};
+    }
+  }
+  // All windows passed — next cycle
+  return {status:"closed", label:"🔴 Applications Closed (Next: 2027)"};
+}
+
+function appStatusBadge(exam){
+  const s = getAppStatus(exam);
+  const colors = {
+    open:    "background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.4);color:#4ade80;",
+    upcoming:"background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.35);color:var(--tl);",
+    closed:  "background:rgba(244,63,94,.1);border:1px solid rgba(244,63,94,.3);color:#fb7185;",
+    unknown: "background:rgba(255,255,255,.05);border:1px solid var(--br);color:var(--mt);"
+  };
+  return `<span style="${colors[s.status]}padding:.22rem .65rem;border-radius:6px;font-size:.67rem;font-weight:700;white-space:nowrap;">${s.label}</span>`;
+}
+
+// College application status based on typical Indian academic calendar
+function getCollegeAppStatus(col){
+  // Map exams to their application windows (month numbers, 2026)
+  const examWindows = {
+    "JEE Advanced": {open:[4,5],    status:"closed",  msg:"🔴 Closed — Next: Jan 2027"},
+    "JEE Main":     {open:[1,2,3],  status:"closed",  msg:"🔴 Closed — Next: Jan 2027"},
+    "NEET UG":      {open:[2,3],    status:"closed",  msg:"🔴 Closed — Next: Feb 2027"},
+    "CAT":          {open:[8,9],    status:"upcoming",msg:"🔵 CAT 2026: Opens Aug 2026"},
+    "CLAT":         {open:[7,8,9,10,11], status:"upcoming", msg:"🔵 CLAT 2027: Opens ~Jul 2026"},
+    "BITSAT":       {open:[1,2,3],  status:"closed",  msg:"🔴 Closed — Next: Jan 2027"},
+    "NIFT Entrance Test":{open:[11,12,1],status:"upcoming",msg:"🔵 NIFT 2027: Opens ~Nov 2026"},
+    "NID DAT":      {open:[10,11,12],status:"upcoming",msg:"🔵 NID DAT 2027: Opens ~Oct 2026"},
+    "CUET (UG)":    {open:[2,3],    status:"closed",  msg:"🔴 Closed — Next: Feb 2027"},
+    "XAT":          {open:[7,8,9,10,11,12],status:"upcoming",msg:"🔵 XAT 2027: Opens ~Jul 2026"},
+    "VITEEE":       {open:[11,12,1,2],status:"upcoming",msg:"🔵 VITEEE 2027: Opens ~Nov 2026"},
+    "WBJEE":        {open:[1,2],    status:"closed",  msg:"🔴 Closed — Next: Jan 2027"},
+    "ICAR AIEEA UG":{open:[2,3,4],  status:"closed",  msg:"🔴 Closed — Next: Feb 2027"},
+    "SRMJEEE":      {open:[11,12,1,2,3],status:"upcoming",msg:"🔵 SRMJEEE 2027: Opens ~Nov 2026"},
+    "Christ University Entrance Test":{open:[11,12,1,2],status:"upcoming",msg:"🔵 Christ 2027: Opens ~Nov 2026"},
+    "Amity JEE":{open:[12,1,2,3,4,5,6],status:"open",msg:"🟢 Rolling Admissions — Apply Now!"},
+    "ASAT / Amity JEE":{open:[12,1,2,3,4,5,6],status:"open",msg:"🟢 Rolling Admissions — Apply Now!"}
+  };
+  for(const exam of col.exams){
+    const key = Object.keys(examWindows).find(k=>exam.includes(k.split(' ')[0])||k.includes(exam.split(' ')[0]));
+    if(key) return examWindows[key];
+  }
+  return {status:"unknown",msg:"ℹ️ Check Official Website"};
+}
+
+function collegeBadge(col){
+  const s = getCollegeAppStatus(col);
+  const styles={
+    open:    "background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.5);color:#4ade80;",
+    upcoming:"background:rgba(6,182,212,.12);border-color:rgba(6,182,212,.4);color:var(--tl);",
+    closed:  "background:rgba(244,63,94,.1);border-color:rgba(244,63,94,.35);color:#fb7185;",
+    unknown: "background:rgba(255,255,255,.05);border-color:var(--br);color:var(--mt);"
+  };
+  return `<span style="${styles[s.status]}font-size:.62rem;font-weight:700;padding:.18rem .6rem;border-radius:6px;border:1px solid;white-space:nowrap;">${s.msg}</span>`;
+}
+
+// ── SIDEBAR HTML ─────────────────────────────────────────────
+function getSidebarHTML(){
+  return `
+  <div class="scard">
+    <h3>📍 Location</h3>
+    <div class="flist">
+      <div class="fitem active" onclick="setSF('loc','all',this)"><div class="fdot" style="background:#666"></div>All India<span class="fcnt">25</span></div>
+      <div class="fitem" onclick="setSF('loc','north',this)"><div class="fdot" style="background:var(--tl)"></div>North India<span class="fcnt">9</span></div>
+      <div class="fitem" onclick="setSF('loc','south',this)"><div class="fdot" style="background:var(--gn)"></div>South India<span class="fcnt">10</span></div>
+      <div class="fitem" onclick="setSF('loc','east',this)"><div class="fdot" style="background:var(--pu)"></div>East India<span class="fcnt">4</span></div>
+      <div class="fitem" onclick="setSF('loc','west',this)"><div class="fdot" style="background:var(--sf)"></div>West India<span class="fcnt">4</span></div>
+    </div>
+  </div>
+  <div class="scard">
+    <h3>🎓 Institution Type</h3>
+    <div class="flist">
+      <div class="fitem" onclick="setQF(this,'govt')"><div class="fdot" style="background:var(--gn)"></div>Government/Central<span class="fcnt">15</span></div>
+      <div class="fitem" onclick="setQF(this,'private')"><div class="fdot" style="background:var(--pu)"></div>Private<span class="fcnt">5</span></div>
+      <div class="fitem" onclick="setQF(this,'deemed')"><div class="fdot" style="background:var(--tl)"></div>Deemed University<span class="fcnt">8</span></div>
+    </div>
+  </div>
+  <div class="scard">
+    <h3>🟢 Application Status</h3>
+    <div class="flist">
+      <div class="fitem" onclick="setQF(this,'open-now')"><div class="fdot" style="background:#4ade80"></div>Open Now — Apply!</div>
+      <div class="fitem" onclick="setQF(this,'upcoming')"><div class="fdot" style="background:var(--tl)"></div>Opening Soon</div>
+      <div class="fitem" onclick="setQF(this,'closed')"><div class="fdot" style="background:#fb7185"></div>Closed (Next Cycle)</div>
+    </div>
+  </div>
+  <div class="scard">
+    <h3>💸 Max Annual Fees</h3>
+    <div class="rngflt">
+      <label><span>₹0</span><span id="mfl">₹25L+</span></label>
+      <input type="range" id="fr" min="0" max="30" value="30" step="1" oninput="onFR(this)">
+    </div>
+    <div style="font-size:.67rem;color:var(--mt);margin-top:.2rem;">Drag to set maximum annual fee</div>
+  </div>
+  <div class="scard">
+    <h3>🏆 Filter by Exam</h3>
+    <div class="flist">
+      <div class="fitem" onclick="setQEx('JEE')"><div class="fdot" style="background:var(--sf)"></div>JEE Main / Advanced</div>
+      <div class="fitem" onclick="setQEx('NEET')"><div class="fdot" style="background:var(--rs)"></div>NEET UG</div>
+      <div class="fitem" onclick="setQEx('CAT')"><div class="fdot" style="background:var(--gd)"></div>CAT</div>
+      <div class="fitem" onclick="setQEx('CLAT')"><div class="fdot" style="background:var(--tl)"></div>CLAT</div>
+      <div class="fitem" onclick="setQEx('NIFT')"><div class="fdot" style="background:var(--pu)"></div>NIFT / NID</div>
+      <div class="fitem" onclick="setQEx('CUET')"><div class="fdot" style="background:var(--gn)"></div>CUET (UG)</div>
+      <div class="fitem" onclick="setQEx('BITSAT')"><div class="fdot" style="background:var(--lv)"></div>BITSAT</div>
+      <div class="fitem" onclick="setQEx('XAT')"><div class="fdot" style="background:var(--gd)"></div>XAT</div>
+    </div>
+  </div>`;
+}
+
+// ── RENDER EXAMS ─────────────────────────────────────────────
+function renderExams(){
+  document.getElementById('et').innerHTML = EXAMS.map(e=>{
+    const s = getAppStatus(e);
+    const sbg={open:"rgba(34,197,94,.15)",upcoming:"rgba(6,182,212,.12)",closed:"rgba(244,63,94,.1)",unknown:"rgba(255,255,255,.05)"};
+    const sc={open:"#4ade80",upcoming:"var(--tl)",closed:"#fb7185",unknown:"var(--mt)"};
+    const sb={open:"rgba(34,197,94,.4)",upcoming:"rgba(6,182,212,.35)",closed:"rgba(244,63,94,.3)",unknown:"var(--br)"};
+    return `<div class="tlcard" style="border-left-color:${e.color}">
+      <div class="tlex">${e.name}</div>
+      <div style="margin:.25rem 0;"><span style="background:${sbg[s.status]};border:1px solid ${sb[s.status]};color:${sc[s.status]};padding:.18rem .55rem;border-radius:6px;font-size:.65rem;font-weight:700;">${s.label}</span></div>
+      <div class="tldt" style="color:${e.color}">📅 ${e.date}</div>
+      <div class="tlinf">
+        <b>By:</b> ${e.conducting}<br>
+        <b>For:</b> ${e.streams}<br>
+        <b>Eligibility:</b> ${e.eligibility}<br>
+        <b>Mode:</b> ${e.mode}<br>
+        <b>App Window:</b> ${e.appOpen} – ${e.appClose}<br>
+        <b>Fee:</b> ${e.fees}
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.55rem;">
+        <a href="${e.applyUrl}" target="_blank" rel="noopener noreferrer" class="tlapply">✏️ Apply Now ↗</a>
+        <a href="${e.infoUrl}" target="_blank" rel="noopener noreferrer" class="tlinfo2">ℹ️ Info ↗</a>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── RENDER LINKS TAB ─────────────────────────────────────────
+function renderLinks(col){
+  const L = col.links;
+  const groups = [
+    {title:"🌐 Official Pages", keys:["website","admissions","brochure"]},
+    {title:"✏️ Apply / Exam Portals", keys:["examApply","josaa","mcc","jeeroute","nsp"]},
+    {title:"💰 Scholarships & Aid", keys:["scholarship"]},
+    {title:"🏠 Campus Life", keys:["hostel"]},
+    {title:"💼 Placements", keys:["placement"]},
+    {title:"🏆 Rankings", keys:["nirf"]}
+  ];
+  let html='';
+  groups.forEach(g=>{
+    const items = g.keys.filter(k=>L[k]);
+    if(!items.length) return;
+    html+=`<div class="lstitle">${g.title}</div><div class="linksgrid">`;
+    items.forEach(k=>{
+      const lk=L[k];
+      const domain = lk.url.replace(/https?:\/\//,'').split('/')[0];
+      html+=`<a href="${lk.url}" target="_blank" rel="noopener noreferrer" class="lcard">
+        <div class="lci">${lk.icon}</div>
+        <div class="lcb">
+          <div class="lct">${lk.label}</div>
+          <div class="lcd">${getlinkDesc(k)}</div>
+          <div class="lcu">${domain}</div>
+        </div>
+      </a>`;
+    });
+    html+='</div>';
+  });
+  // Always add NSP and JoSAA if relevant
+  if(!L.nsp){
+    html+=`<div class="lstitle">🇮🇳 Government Portals</div><div class="linksgrid">
+      <a href="https://scholarships.gov.in" target="_blank" rel="noopener noreferrer" class="lcard"><div class="lci">💰</div><div class="lcb"><div class="lct">National Scholarship Portal</div><div class="lcd">All GoI scholarships in one place</div><div class="lcu">scholarships.gov.in</div></div></a>
+      <a href="https://www.vidyalakshmi.co.in" target="_blank" rel="noopener noreferrer" class="lcard"><div class="lci">🏦</div><div class="lcb"><div class="lct">PM Vidya Lakshmi</div><div class="lcd">Education loans up to ₹7.5L collateral-free</div><div class="lcu">vidyalakshmi.co.in</div></div></a>
+      <a href="https://josaa.nic.in" target="_blank" rel="noopener noreferrer" class="lcard"><div class="lci">📋</div><div class="lcb"><div class="lct">JoSAA Counselling</div><div class="lcd">Common counselling for IITs, NITs, IIITs</div><div class="lcu">josaa.nic.in</div></div></a>
+    </div>`;
+  }
+  return html;
+}
+
+function getlinkDesc(key){
+  const d={website:"Official university homepage",admissions:"Admission info & apply",examApply:"Register & apply for entrance exam",josaa:"JEE joint seat allocation",mcc:"Medical counselling committee",jeeroute:"Alternate JEE application route",scholarship:"Scholarships & financial aid info",hostel:"Hostel, fees & campus life",placement:"Placement statistics & recruiters",nirf:"National Institutional Ranking Framework",brochure:"Prospectus / information bulletin",nsp:"National Scholarship Portal (GoI)"};
+  return d[key]||"Visit official page";
+}
+
+// ── RENDER FACILITIES ─────────────────────────────────────────
+function renderFacStrip(facs){
+  return facs.slice(0,6).map(f=>`<span class="factag"><span>${f.icon}</span>${f.name}</span>`).join('');
+}
+function renderFacGrid(facs){
+  return facs.map(f=>`<div class="facc"><div class="fi">${f.icon}</div><div class="fd"><div class="fn">${f.name}</div><div class="fs">${f.detail}</div></div></div>`).join('');
+}
+function stars(r){let s='';for(let i=1;i<=5;i++)s+=i<=r?'★':'☆';return`<div class="rrow"><span class="stars">${s}</span><span class="rlbl">Campus Rating ${r}/5</span></div>`;}
+
+// ── BADGE HTML ────────────────────────────────────────────────
+function getBadges(c){
+  let h='';
+  if(c.nirf) h+=`<span class="cbdg bn">#${c.nirf} NIRF</span>`;
+  if(c.tags.includes('iit')) h+=`<span class="cbdg bi">IIT</span>`;
+  if(c.tags.includes('nit')) h+=`<span class="cbdg bi">NIT</span>`;
+  if(c.type==='govt') h+=`<span class="cbdg bg">Govt</span>`;
+  if(c.type==='private') h+=`<span class="cbdg bp">Private</span>`;
+  if(c.type==='deemed') h+=`<span class="cbdg bd">Deemed</span>`;
+  if(c.tags.includes('autonomous')) h+=`<span class="cbdg ba">Autonomous</span>`;
+  return h;
+}
+
+// ── RENDER CARD ───────────────────────────────────────────────
+function renderCard(col, delay){
+  const appStatus = getCollegeAppStatus(col);
+  const statStyle = {
+    open:    "background:rgba(34,197,94,.13);border-color:rgba(34,197,94,.5);color:#4ade80;",
+    upcoming:"background:rgba(6,182,212,.1);border-color:rgba(6,182,212,.4);color:var(--tl);",
+    closed:  "background:rgba(244,63,94,.08);border-color:rgba(244,63,94,.35);color:#fb7185;",
+    unknown: "background:rgba(255,255,255,.05);border-color:var(--br);color:var(--mt);"
+  }[appStatus.status];
+
+  return `<div class="ccard" style="animation-delay:${delay}ms">
+  <div class="chdr">
+    <div class="clogo">${col.icon}</div>
+    <div class="cmeta">
+      <div class="cname">${col.name}</div>
+      <div class="cloc">📍 ${col.location}</div>
+      <div class="cbdgs">${getBadges(col)}</div>
+    </div>
+    <div class="cscore">
+      <div class="sval">${col.annualFees<1?'<₹1L':'₹'+col.annualFees+'L'}</div>
+      <div class="slb">Annual Fees</div>
+    </div>
+  </div>
+  <!-- APPLICATION STATUS BAR -->
+  <div style="padding:.45rem 1rem;background:rgba(0,0,0,.2);border-top:1px solid var(--br);display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;">
+    <span style="font-size:.65rem;color:var(--mt);flex-shrink:0;">📅 Status:</span>
+    <span style="${statStyle}font-size:.65rem;font-weight:700;padding:.2rem .6rem;border-radius:6px;border:1px solid;">${appStatus.msg}</span>
+    <a href="${col.links.admissions?col.links.admissions.url:'#'}" target="_blank" rel="noopener noreferrer" style="margin-left:auto;background:rgba(255,107,26,.12);border:1px solid rgba(255,107,26,.35);color:var(--sfl);border-radius:6px;padding:.2rem .6rem;font-size:.63rem;font-weight:700;text-decoration:none;white-space:nowrap;">🔗 Official Admissions ↗</a>
+  </div>
+  <!-- ENTRANCE EXAMS -->
+  <div class="examrow">
+    <span class="elbl">Entrance:</span>
+    ${col.exams.map(e=>`<span class="etag">${e}</span>`).join('')}
+  </div>
+  <!-- QUICK LINKS -->
+  <div class="qlrow">
+    ${col.links.website?`<a href="${col.links.website.url}" target="_blank" rel="noopener noreferrer" class="ql ql-site">🌐 Website ↗</a>`:''}
+    ${col.links.examApply?`<a href="${col.links.examApply.url}" target="_blank" rel="noopener noreferrer" class="ql ql-apply">✏️ Apply Exam ↗</a>`:''}
+    ${col.links.scholarship?`<a href="${col.links.scholarship.url}" target="_blank" rel="noopener noreferrer" class="ql ql-sch">💰 Scholarships ↗</a>`:''}
+    ${col.links.hostel?`<a href="${col.links.hostel.url}" target="_blank" rel="noopener noreferrer" class="ql ql-host">🏠 Hostel ↗</a>`:''}
+    ${col.links.placement?`<a href="${col.links.placement.url}" target="_blank" rel="noopener noreferrer" class="ql ql-place">💼 Placements ↗</a>`:''}
+    ${col.links.nirf?`<a href="${col.links.nirf.url}" target="_blank" rel="noopener noreferrer" class="ql ql-nirf">🏆 NIRF ↗</a>`:''}
+    ${col.links.brochure?`<a href="${col.links.brochure.url}" target="_blank" rel="noopener noreferrer" class="ql ql-broc">📄 Brochure ↗</a>`:''}
+  </div>
+  <!-- INFO GRID -->
+  <div class="cgrid">
+    <div class="cgi"><div class="cil">Eligibility</div><div class="civ">${col.eligibility.substring(0,70)}…</div></div>
+    <div class="cgi"><div class="cil">Apply Window</div><div class="civ">${col.applyWindow}</div></div>
+    <div class="cgi"><div class="cil">Total Fees</div><div class="civ">${col.totalFees}</div></div>
+  </div>
+  <!-- FACILITIES STRIP -->
+  <div class="facstrip"><span class="faclbl">🏛️ Facilities:</span>${renderFacStrip(col.facilities)}</div>
+  <!-- EXPAND -->
+  <button class="expbtn" onclick="toggleDetail(${col.id},this)">▼ Full Details — Admission · Scholarships · Facilities · All Links</button>
+  <div class="cdetail" id="det-${col.id}">
+    <div class="dtabs">
+      <button class="dtab active" onclick="swTab(${col.id},'ov',this)">📋 Overview</button>
+      <button class="dtab" onclick="swTab(${col.id},'adm',this)">🎯 Admission</button>
+      <button class="dtab" onclick="swTab(${col.id},'sch',this)">💰 Scholarships</button>
+      <button class="dtab" onclick="swTab(${col.id},'fac',this)">🏛️ Facilities</button>
+      <button class="dtab" onclick="swTab(${col.id},'lnk',this)">🔗 All Links</button>
+      <button class="dtab" onclick="swTab(${col.id},'plc',this)">💼 Placement</button>
+    </div>
+    <!-- OVERVIEW -->
+    <div class="dpanel active" id="tp-${col.id}-ov">
+      <div class="dsec"><h4>About</h4><p style="font-size:.8rem;color:var(--mt);line-height:1.7">${col.detail}</p></div>
+      <div class="dsec"><h4>Courses Offered</h4><p style="font-size:.8rem">${col.courses}</p><p style="font-size:.72rem;color:var(--mt);margin-top:.25rem">Duration: ${col.duration}</p></div>
+      <div class="dsec"><h4>Fee Structure</h4><ul class="dlist"><li>Annual: ${col.fees}</li><li>Total (full course): ${col.totalFees}</li></ul></div>
+      ${stars(col.campusRating)}
+    </div>
+    <!-- ADMISSION -->
+    <div class="dpanel" id="tp-${col.id}-adm">
+      <div class="dsec">
+        <h4>Application Status Today</h4>
+        <div style="padding:.6rem .75rem;border-radius:8px;margin:.25rem 0;${statStyle}border:1px solid;">
+          <strong>${appStatus.msg}</strong><br>
+          <span style="font-size:.72rem;opacity:.85">As of June 10, 2026</span>
+        </div>
+      </div>
+      <div class="dsec"><h4>Step-by-Step Process</h4><ul class="dlist">${col.process.split('→').map(s=>`<li>${s.trim()}</li>`).join('')}</ul></div>
+      <div class="dsec"><h4>Eligibility</h4><ul class="dlist"><li>${col.eligibility}</li></ul></div>
+      <div class="dsec"><h4>Entrance Exam(s)</h4><ul class="dlist">${col.exams.map(e=>`<li>${e}</li>`).join('')}</ul></div>
+      <div class="dsec"><h4>Application Window</h4><ul class="dlist"><li>${col.applyWindow}</li></ul></div>
+      <div class="dsec"><h4>Cutoff / Competition Level</h4><ul class="dlist"><li>${col.cutoff}</li></ul></div>
+    </div>
+    <!-- SCHOLARSHIPS -->
+    <div class="dpanel" id="tp-${col.id}-sch">
+      <div class="dsec">
+        <h4>Institutional Scholarships</h4>
+        ${col.scholarships.map(s=>`<div class="schitem"><strong>${s.name}</strong><br><small>${s.detail}</small></div>`).join('')}
+      </div>
+      <div class="dsec">
+        <h4>Government Scholarship Schemes</h4>
+        <ul class="dlist">
+          <li><a href="https://scholarships.gov.in" target="_blank" rel="noopener noreferrer" style="color:var(--tl)">National Scholarship Portal (NSP) ↗</a> — All central govt scholarships</li>
+          <li>Post-Matric Scholarship for SC/ST/OBC via state governments</li>
+          <li><a href="https://www.vidyalakshmi.co.in" target="_blank" rel="noopener noreferrer" style="color:var(--tl)">PM Vidya Lakshmi ↗</a> — Education loans up to ₹7.5L collateral-free</li>
+          <li>Central Sector Scholarship — for top Class 12 meritorious students</li>
+          <li>INSPIRE Scholarship (DST) — for science students scoring in top 1%</li>
+        </ul>
+      </div>
+    </div>
+    <!-- FACILITIES -->
+    <div class="dpanel" id="tp-${col.id}-fac">
+      <div class="dsec"><h4>Campus Facilities</h4>${stars(col.campusRating)}<div class="facgrid">${renderFacGrid(col.facilities)}</div></div>
+    </div>
+    <!-- ALL LINKS -->
+    <div class="dpanel" id="tp-${col.id}-lnk">
+      <div class="dsec"><h4>Official Links & Portals</h4><p style="font-size:.72rem;color:var(--mt);margin-bottom:.5rem">All links open in a new tab. Always verify information from official sources before applying.</p>${renderLinks(col)}</div>
+    </div>
+    <!-- PLACEMENT -->
+    <div class="dpanel" id="tp-${col.id}-plc">
+      <div class="dsec"><h4>Placement Highlights</h4><ul class="dlist"><li>${col.placement}</li></ul></div>
+      ${col.links.placement?`<a href="${col.links.placement.url}" target="_blank" rel="noopener noreferrer" class="ql ql-place" style="margin:.5rem 0;display:inline-flex;">💼 View Full Placement Report ↗</a>`:''}
+    </div>
+  </div>
+</div>`;
+}
+
+// ── STATE ─────────────────────────────────────────────────────
+let curStream='all', curQF='all', curLoc='all', curExam=null, maxFee=30;
+
+// ── FILTER ────────────────────────────────────────────────────
+function filterCards(){
+  const q = document.getElementById('si').value.toLowerCase();
+  const sort = document.getElementById('ss').value;
+  let res = COLLEGES.filter(c=>{
+    const streamOk = curStream==='all'||c.streams.includes(curStream);
+    const locOk = curLoc==='all'||c.region===curLoc;
+    const feeOk = c.annualFees<=maxFee;
+    const examOk = !curExam||c.exams.some(e=>e.toUpperCase().includes(curExam.toUpperCase()));
+    const as = getCollegeAppStatus(c);
+    let typeOk=true;
+    if(curQF==='govt') typeOk=c.type==='govt';
+    else if(curQF==='private') typeOk=c.type==='private';
+    else if(curQF==='deemed') typeOk=c.type==='deemed';
+    else if(curQF==='top10') typeOk=c.nirf<=10;
+    else if(curQF==='scholarship') typeOk=c.scholarships.length>0;
+    else if(curQF==='low-fees') typeOk=c.annualFees<=1;
+    else if(curQF==='hostel') typeOk=c.facilities.some(f=>f.name.toLowerCase().includes('hostel'));
+    else if(curQF==='research') typeOk=c.facilities.some(f=>f.name.toLowerCase().includes('research')||f.name.toLowerCase().includes('lab'));
+    else if(curQF==='open-now') typeOk=as.status==='open';
+    else if(curQF==='upcoming') typeOk=as.status==='upcoming';
+    else if(curQF==='closed') typeOk=as.status==='closed';
+    const srchOk=!q||c.name.toLowerCase().includes(q)||c.location.toLowerCase().includes(q)||c.exams.some(e=>e.toLowerCase().includes(q))||c.courses.toLowerCase().includes(q)||c.streams.some(s=>s.includes(q))||c.facilities.some(f=>f.name.toLowerCase().includes(q));
+    return streamOk&&locOk&&feeOk&&typeOk&&srchOk&&examOk;
+  });
+  if(sort==='nirf') res.sort((a,b)=>a.nirf-b.nirf);
+  else if(sort==='fees-low') res.sort((a,b)=>a.annualFees-b.annualFees);
+  else if(sort==='fees-high') res.sort((a,b)=>b.annualFees-a.annualFees);
+  else if(sort==='alpha') res.sort((a,b)=>a.name.localeCompare(b.name));
+  const cc=document.getElementById('cc');
+  const es=document.getElementById('es');
+  document.getElementById('rc').textContent=res.length;
+  if(!res.length){cc.innerHTML='';es.style.display='block';}
+  else{es.style.display='none';cc.innerHTML=res.map((c,i)=>renderCard(c,i*30)).join('');}
+}
+
+// ── TOGGLES ────────────────────────────────────────────────────
+function toggleDetail(id,btn){
+  const d=document.getElementById('det-'+id);
+  d.classList.toggle('open');
+  btn.textContent=d.classList.contains('open')?'▲ Collapse':'▼ Full Details — Admission · Scholarships · Facilities · All Links';
+  if(d.classList.contains('open')) setTimeout(()=>d.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+}
+function swTab(id,tab,btn){
+  document.querySelectorAll(`#det-${id} .dtab`).forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll(`#det-${id} .dpanel`).forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(`tp-${id}-${tab}`).classList.add('active');
+}
+function setStream(btn,s){
+  curStream=s; curExam=null;
+  document.querySelectorAll('.stbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCards();
+}
+function setQF(btn,f){
+  curQF=f;
+  document.querySelectorAll('.fchip').forEach(b=>b.classList.remove('active'));
+  if(btn&&btn.classList) btn.classList.add('active');
+  filterCards();
+}
+function setSF(type,val,el){
+  if(type==='loc'){
+    curLoc=val;
+    document.querySelectorAll('[onclick*="setSF(\'loc\'"]').forEach(b=>b.classList.remove('active'));
+    el.classList.add('active');
+  }
+  filterCards();
+  if(window.innerWidth<960) closeDrawer();
+}
+function setQEx(ex){curExam=curExam===ex?null:ex;filterCards();}
+function onFR(el){
+  maxFee=parseInt(el.value);
+  document.querySelectorAll('#mfl').forEach(l=>l.textContent=maxFee>=30?'₹25L+':'₹'+maxFee+'L');
+  filterCards();
+}
+function openDrawer(){document.getElementById('dov').classList.add('open');document.getElementById('drw').classList.add('open');document.body.style.overflow='hidden';}
+function closeDrawer(){document.getElementById('dov').classList.remove('open');document.getElementById('drw').classList.remove('open');document.body.style.overflow='';}
+function showSec(sec,btn){
+  document.querySelectorAll('.nbt').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const ex=document.getElementById('exsec');
+  const mc=document.querySelector('.maincont');
+  const ss=document.querySelector('.strmsec');
+  const fb=document.querySelector('.fbar');
+  const sa=document.querySelector('.srcharea');
+  const ri=document.getElementById('rinfo')||document.querySelector('.rinfo');
+  const show=(e,v)=>{if(e)e.style.display=v;};
+  if(sec==='exams'){show(ex,'block');show(mc,'none');show(ss,'none');show(fb,'none');show(sa,'none');ex.scrollIntoView({behavior:'smooth'});}
+  else{show(ex,'none');show(mc,'grid');show(ss,'block');show(fb,'flex');show(sa,'flex');if(sec==='streams')ss.scrollIntoView({behavior:'smooth'});else mc.scrollIntoView({behavior:'smooth'});}
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+const shtml = getSidebarHTML();
+document.getElementById('dsktop').innerHTML = shtml;
+document.getElementById('dsb').innerHTML = shtml;
+renderExams();
+filterCards();
+</script>
+</body>
+</html>
