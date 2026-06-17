@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A1 Computer & Laptop Service Center | Bengaluru</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A0F1E;
+    --navy-mid: #111827;
+    --navy-card: #151D2E;
+    --blue: #1B6CF2;
+    --blue-glow: #2B7FFF;
+    --blue-light: #4A9BFF;
+    --ice: #E8F0FF;
+    --amber: #F5A623;
+    --slate: #8896B0;
+    --white: #FFFFFF;
+    --border: rgba(27, 108, 242, 0.2);
+    --wa: #25D366;
+    --wa-dark: #1ebe5d;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--ice);
+    overflow-x: hidden;
+  }
+
+  /* ─── STICKY NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+    background: rgba(10, 15, 30, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--blue-light); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500; color: var(--slate);
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ice); }
+  .nav-cta {
+    background: var(--blue);
+    color: var(--white) !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--blue-glow) !important; color: var(--white) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(27,108,242,0.12) 0%, transparent 70%);
+  }
+
+  /* Circuit SVG background */
+  .circuit-bg {
+    position: absolute; inset: 0; opacity: 0.06;
+    pointer-events: none;
+  }
+
+  /* Animated glow orb */
+  .orb {
+    position: absolute;
+    width: 500px; height: 500px;
+    right: 5%; top: 50%;
+    transform: translateY(-50%);
+    background: radial-gradient(circle, rgba(27,108,242,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; }
+    50% { transform: translateY(-50%) scale(1.08); opacity: 0.75; }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 620px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--blue-light);
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block; width: 28px; height: 2px;
+    background: var(--blue-light);
+  }
+  .hero h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--blue-light);
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--slate);
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--blue);
+    color: var(--white);
+    padding: 0.85rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 0 24px rgba(27,108,242,0.4);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover {
+    background: var(--blue-glow);
+    box-shadow: 0 0 40px rgba(27,108,242,0.6);
+    transform: translateY(-2px);
+  }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1px solid var(--border);
+    color: var(--ice);
+    padding: 0.85rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 500; font-size: 0.95rem;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover {
+    border-color: var(--blue-light);
+    background: rgba(27,108,242,0.08);
+  }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; flex-wrap: wrap;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.8rem; font-weight: 700;
+    color: var(--white);
+  }
+  .stat-num span { color: var(--blue-light); }
+  .stat-label { font-size: 0.78rem; color: var(--slate); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.2rem; }
+
+  /* Laptop illustration */
+  .hero-visual {
+    position: absolute;
+    right: 4%; top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ─── TICKER ─── */
+  .ticker {
+    background: var(--blue);
+    padding: 0.65rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-flex; gap: 3rem;
+    animation: ticker 20s linear infinite;
+  }
+  .ticker-inner span {
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.85);
+    flex-shrink: 0;
+  }
+  .ticker-inner span::before { content: '✦  '; color: rgba(255,255,255,0.5); }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 90px 5%; }
+  .section-label {
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--blue-light); margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700; color: var(--white);
+    line-height: 1.2; margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 0.98rem; color: var(--slate); line-height: 1.7; max-width: 520px;
+  }
+
+  /* ─── SERVICES ─── */
+  .services { background: var(--navy-mid); }
+  .services-head { margin-bottom: 3.5rem; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .service-card {
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    cursor: default;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(27,108,242,0.5);
+    box-shadow: 0 12px 40px rgba(27,108,242,0.15);
+  }
+  .service-icon {
+    width: 48px; height: 48px;
+    background: rgba(27,108,242,0.12);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .service-card h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.9rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.6rem;
+    letter-spacing: 0.03em;
+  }
+  .service-card p {
+    font-size: 0.87rem; color: var(--slate); line-height: 1.6;
+  }
+  .service-tag {
+    display: inline-block; margin-top: 1rem;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    background: rgba(27,108,242,0.1);
+    padding: 0.3rem 0.7rem; border-radius: 4px;
+  }
+
+  /* ─── WHY US ─── */
+  .why { background: var(--navy); }
+  .why-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .why-points { display: flex; flex-direction: column; gap: 2rem; margin-top: 2.5rem; }
+  .why-point { display: flex; gap: 1.25rem; align-items: flex-start; }
+  .why-point-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: rgba(27,108,242,0.12);
+    border: 1px solid rgba(27,108,242,0.25);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .why-point-text h4 {
+    font-weight: 600; font-size: 0.95rem; color: var(--white); margin-bottom: 0.3rem;
+  }
+  .why-point-text p { font-size: 0.85rem; color: var(--slate); line-height: 1.6; }
+
+  /* Trust panel */
+  .trust-panel {
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+  }
+  .trust-panel-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem; font-weight: 700; color: var(--white);
+    margin-bottom: 1.75rem;
+  }
+  .trust-rows { display: flex; flex-direction: column; gap: 1.25rem; }
+  .trust-row { display: flex; align-items: center; gap: 1rem; }
+  .trust-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--blue-light); flex-shrink: 0;
+    box-shadow: 0 0 8px var(--blue-light);
+  }
+  .trust-row-label { font-size: 0.85rem; color: var(--slate); flex: 1; }
+  .trust-badge {
+    font-size: 0.75rem; font-weight: 600;
+    color: #4ADE80;
+    background: rgba(74,222,128,0.1);
+    padding: 0.25rem 0.6rem; border-radius: 4px;
+  }
+  .trust-badge.amber { color: var(--amber); background: rgba(245,166,35,0.1); }
+  .open-badge {
+    display: flex; align-items: center; gap: 0.5rem;
+    margin-top: 2rem; padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .open-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #4ADE80;
+    box-shadow: 0 0 10px #4ADE80;
+    animation: blink 1.5s ease-in-out infinite;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .open-badge span { font-size: 0.85rem; font-weight: 600; color: #4ADE80; }
+  .open-badge small { font-size: 0.78rem; color: var(--slate); margin-left: 0.5rem; }
+
+  /* ─── BRANDS ─── */
+  .brands { background: var(--navy-mid); padding: 60px 5%; }
+  .brands-label { text-align: center; margin-bottom: 2.5rem; }
+  .brands-row {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 1rem;
+  }
+  .brand-chip {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--slate);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.5rem 1.25rem;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .brand-chip:hover {
+    color: var(--ice);
+    border-color: rgba(27,108,242,0.5);
+    background: rgba(27,108,242,0.07);
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .reviews { background: var(--navy); }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem; margin-top: 3rem;
+  }
+  .review-card {
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+  }
+  .stars { color: var(--amber); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+  .review-text { font-size: 0.9rem; color: var(--ice); line-height: 1.7; font-style: italic; }
+  .review-author {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-top: 1.25rem; padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+  .author-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.85rem; color: var(--white);
+    flex-shrink: 0;
+  }
+  .author-name { font-size: 0.85rem; font-weight: 600; color: var(--white); }
+  .author-role { font-size: 0.75rem; color: var(--slate); }
+
+  /* ─── LOCATION ─── */
+  .location { background: var(--navy-mid); }
+  .location-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
+  .location-info { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+  .info-row { display: flex; gap: 1rem; align-items: flex-start; }
+  .info-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: rgba(27,108,242,0.12);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .info-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); margin-bottom: 0.25rem; }
+  .info-val { font-size: 0.93rem; color: var(--ice); line-height: 1.5; }
+  .info-val a { color: var(--blue-light); text-decoration: none; }
+  .info-val a:hover { text-decoration: underline; }
+  .map-wrap {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    height: 350px;
+  }
+  .map-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+
+  /* ─── CTA BANNER ─── */
+  .cta-banner {
+    background: linear-gradient(135deg, #0D1A3A 0%, #122248 50%, #0A0F1E 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 5%;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(27,108,242,0.15) 0%, transparent 70%);
+  }
+  .cta-banner h2 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800; color: var(--white);
+    margin-bottom: 1rem; position: relative;
+  }
+  .cta-banner p {
+    font-size: 1rem; color: var(--slate); margin-bottom: 2.5rem; position: relative;
+  }
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid var(--border);
+    padding: 3rem 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900; font-size: 1rem; color: var(--white);
+  }
+  .footer-logo span { color: var(--blue-light); }
+  footer p { font-size: 0.8rem; color: var(--slate); }
+
+  /* ─── FLOATING BUTTONS ─── */
+  .float-call {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+    width: 56px; height: 56px;
+    background: var(--blue);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(27,108,242,0.5);
+    text-decoration: none; font-size: 1.4rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: float 3s ease-in-out infinite;
+  }
+  .float-call:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(27,108,242,0.7);
+  }
+  .float-wa {
+    position: fixed; bottom: 5.5rem; right: 1.5rem; z-index: 200;
+    width: 56px; height: 56px;
+    background: var(--wa);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+    text-decoration: none; font-size: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: float 3s ease-in-out infinite;
+    animation-delay: 0.4s;
+  }
+  .float-wa:hover {
+    transform: scale(1.1);
+    background: var(--wa-dark);
+    box-shadow: 0 6px 30px rgba(37,211,102,0.65);
+  }
+  /* WhatsApp green button style */
+  .btn-wa {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--wa);
+    color: var(--white);
+    padding: 0.85rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 0 24px rgba(37,211,102,0.3);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  }
+  .btn-wa:hover {
+    background: var(--wa-dark);
+    box-shadow: 0 0 40px rgba(37,211,102,0.5);
+    transform: translateY(-2px);
+  }
+  .nav-wa {
+    background: var(--wa) !important;
+  }
+  .nav-wa:hover { background: var(--wa-dark) !important; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .why-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .location-inner { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .hero-stats { gap: 1.5rem; }
+    .hero { padding-top: 80px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FLOATING BUTTONS -->
+<a href="https://wa.me/919035188637?text=Hi%2C%20I%20need%20help%20with%20my%20laptop%2Fcomputer" class="float-wa" target="_blank" title="WhatsApp Us">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<a href="tel:+919035188637" class="float-call" title="Call Now">📞</a>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">A<span>1</span> SERVICE</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="https://wa.me/919035188637?text=Hi%2C%20I%20need%20help%20with%20my%20laptop%2Fcomputer" target="_blank" class="nav-cta nav-wa">💬 WhatsApp</a></li>
+    <li><a href="tel:+919035188637" class="nav-cta">📞 Call Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="orb"></div>
+
+  <!-- Circuit SVG background -->
+  <svg class="circuit-bg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+    <g stroke="#1B6CF2" stroke-width="1" fill="none">
+      <path d="M0 200 H300 V100 H500 V300 H700 V150 H1200"/>
+      <path d="M0 400 H150 V500 H400 V350 H600 V550 H900 V400 H1200"/>
+      <path d="M200 800 V600 H450 V700 H700 V500 H1000 V650 H1200"/>
+      <circle cx="300" cy="200" r="4" fill="#1B6CF2"/>
+      <circle cx="500" cy="100" r="4" fill="#1B6CF2"/>
+      <circle cx="500" cy="300" r="4" fill="#1B6CF2"/>
+      <circle cx="700" cy="150" r="4" fill="#1B6CF2"/>
+      <circle cx="150" cy="400" r="4" fill="#1B6CF2"/>
+      <circle cx="400" cy="500" r="4" fill="#1B6CF2"/>
+      <circle cx="600" cy="350" r="4" fill="#1B6CF2"/>
+      <circle cx="900" cy="400" r="4" fill="#1B6CF2"/>
+      <circle cx="450" cy="700" r="4" fill="#1B6CF2"/>
+      <circle cx="700" cy="500" r="4" fill="#1B6CF2"/>
+    </g>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Bengaluru's Trusted Repair Hub</div>
+    <h1>Expert Laptop &amp; Computer <em>Repair</em> Done Right</h1>
+    <p class="hero-desc">From dead motherboards to cracked screens, data recovery to virus cleanup — A1 Service Center brings your devices back to life. Open 24 hours, 7 days a week.</p>
+    <div class="hero-actions">
+      <a href="tel:+919035188637" class="btn-primary">📞 090351 88637</a>
+      <a href="https://wa.me/919035188637?text=Hi%2C%20I%20need%20help%20with%20my%20laptop%2Fcomputer" target="_blank" class="btn-wa">💬 WhatsApp</a>
+      <a href="#location" class="btn-outline">📍 Find Us</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">10<span>K+</span></div>
+        <div class="stat-label">Devices Repaired</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">24<span>/7</span></div>
+        <div class="stat-label">Open Always</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4.8<span>★</span></div>
+        <div class="stat-label">Google Rating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30<span>+</span></div>
+        <div class="stat-label">Brands Served</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Laptop SVG illustration -->
+  <div class="hero-visual">
+    <svg width="380" height="320" viewBox="0 0 380 320" fill="none">
+      <!-- Screen -->
+      <rect x="60" y="20" width="260" height="190" rx="14" fill="#111827" stroke="#1B6CF2" stroke-width="1.5"/>
+      <!-- Screen glow -->
+      <rect x="75" y="33" width="230" height="162" rx="8" fill="#0D1A3A"/>
+      <!-- Screen content - code lines -->
+      <rect x="90" y="52" width="80" height="5" rx="2" fill="#1B6CF2" opacity="0.7"/>
+      <rect x="90" y="65" width="120" height="4" rx="2" fill="#4A9BFF" opacity="0.5"/>
+      <rect x="90" y="77" width="60" height="4" rx="2" fill="#4ADE80" opacity="0.6"/>
+      <rect x="90" y="89" width="100" height="4" rx="2" fill="#4A9BFF" opacity="0.4"/>
+      <rect x="90" y="101" width="140" height="4" rx="2" fill="#1B6CF2" opacity="0.5"/>
+      <rect x="90" y="113" width="90" height="4" rx="2" fill="#F5A623" opacity="0.6"/>
+      <rect x="90" y="125" width="110" height="4" rx="2" fill="#4A9BFF" opacity="0.4"/>
+      <rect x="90" y="137" width="75" height="4" rx="2" fill="#4ADE80" opacity="0.5"/>
+      <rect x="90" y="149" width="130" height="4" rx="2" fill="#1B6CF2" opacity="0.3"/>
+      <rect x="90" y="161" width="95" height="4" rx="2" fill="#4A9BFF" opacity="0.5"/>
+      <!-- Cursor blink -->
+      <rect x="90" y="173" width="8" height="10" rx="1" fill="#1B6CF2" opacity="0.9">
+        <animate attributeName="opacity" values="0.9;0;0.9" dur="1.2s" repeatCount="indefinite"/>
+      </rect>
+      <!-- Hinge -->
+      <rect x="50" y="208" width="280" height="6" rx="3" fill="#1B6CF2" opacity="0.3"/>
+      <!-- Base / keyboard area -->
+      <rect x="30" y="214" width="320" height="90" rx="10" fill="#111827" stroke="#1B6CF2" stroke-width="1" opacity="0.8"/>
+      <!-- Keyboard rows -->
+      <rect x="60" y="232" width="260" height="6" rx="2" fill="#0D1A3A"/>
+      <rect x="60" y="245" width="240" height="6" rx="2" fill="#0D1A3A"/>
+      <rect x="60" y="258" width="250" height="6" rx="2" fill="#0D1A3A"/>
+      <!-- Touchpad -->
+      <rect x="130" y="272" width="120" height="22" rx="4" fill="#0D1A3A" stroke="#1B6CF2" stroke-width="0.75" opacity="0.6"/>
+      <!-- Glow under laptop -->
+      <ellipse cx="190" cy="305" rx="120" ry="8" fill="#1B6CF2" opacity="0.15"/>
+    </svg>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner" id="tickerInner">
+    <span>Laptop Repair</span>
+    <span>Screen Replacement</span>
+    <span>Data Recovery</span>
+    <span>Virus Removal</span>
+    <span>Motherboard Repair</span>
+    <span>Battery Replacement</span>
+    <span>RAM Upgrade</span>
+    <span>SSD Installation</span>
+    <span>OS Installation</span>
+    <span>Keyboard Repair</span>
+    <span>Cooling System</span>
+    <span>Desktop Repair</span>
+    <span>Laptop Repair</span>
+    <span>Screen Replacement</span>
+    <span>Data Recovery</span>
+    <span>Virus Removal</span>
+    <span>Motherboard Repair</span>
+    <span>Battery Replacement</span>
+    <span>RAM Upgrade</span>
+    <span>SSD Installation</span>
+    <span>OS Installation</span>
+    <span>Keyboard Repair</span>
+    <span>Cooling System</span>
+    <span>Desktop Repair</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-head">
+    <div class="section-label">What We Fix</div>
+    <div class="section-title">Complete Device<br>Repair Solutions</div>
+    <p class="section-sub">All repairs handled in-house by trained technicians. Most jobs completed same day.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">💻</div>
+      <h3>Laptop Repair</h3>
+      <p>Full diagnosis and repair for all laptop issues — power failure, boot problems, overheating, hinge damage, and more.</p>
+      <span class="service-tag">Same Day</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🖥️</div>
+      <h3>Desktop Repair</h3>
+      <p>Hardware and software repair for desktop PCs. Component replacement, PSU, GPU, and complete system builds.</p>
+      <span class="service-tag">Express</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📺</div>
+      <h3>Screen Replacement</h3>
+      <p>Cracked or dead display? We replace LCD, LED, and OLED panels for laptops across all major brands.</p>
+      <span class="service-tag">OEM Parts</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💾</div>
+      <h3>Data Recovery</h3>
+      <p>Recover lost files from failed hard drives, corrupted SSDs, and damaged storage. High success rate.</p>
+      <span class="service-tag">No Fix No Fee</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🦠</div>
+      <h3>Virus & Malware Removal</h3>
+      <p>Deep scan, clean, and harden your system against threats. OS reinstallation if required.</p>
+      <span class="service-tag">Guaranteed Clean</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔋</div>
+      <h3>Battery Replacement</h3>
+      <p>Genuine replacement batteries for all laptop models. Extended warranty on battery replacements.</p>
+      <span class="service-tag">Warranty</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <h3>Motherboard Repair</h3>
+      <p>Component-level diagnosis and repair of motherboards — not just replacement. Cost-effective solution.</p>
+      <span class="service-tag">Chip-Level</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚀</div>
+      <h3>RAM & SSD Upgrade</h3>
+      <p>Speed up your machine with a RAM boost or SSD migration. We handle data transfer to the new drive.</p>
+      <span class="service-tag">Performance</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⌨️</div>
+      <h3>Keyboard & Trackpad</h3>
+      <p>Key replacements, full keyboard swaps, and trackpad repairs for all laptop models.</p>
+      <span class="service-tag">Fast Turnaround</span>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div class="brands">
+  <div class="brands-label section-label">Brands We Service</div>
+  <div class="brands-row">
+    <div class="brand-chip">Dell</div>
+    <div class="brand-chip">HP</div>
+    <div class="brand-chip">Lenovo</div>
+    <div class="brand-chip">Asus</div>
+    <div class="brand-chip">Acer</div>
+    <div class="brand-chip">Apple</div>
+    <div class="brand-chip">Samsung</div>
+    <div class="brand-chip">MSI</div>
+    <div class="brand-chip">Toshiba</div>
+    <div class="brand-chip">Sony</div>
+    <div class="brand-chip">LG</div>
+    <div class="brand-chip">HCL</div>
+    <div class="brand-chip">Fujitsu</div>
+    <div class="brand-chip">Microsoft Surface</div>
+    <div class="brand-chip">+ All Others</div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="why-inner">
+    <div>
+      <div class="section-label">Why Choose A1</div>
+      <div class="section-title">Repair Done with<br>Precision & Trust</div>
+      <p class="section-sub">We don't cut corners. Every repair gets genuine parts, proper testing, and a clear warranty before it leaves our hands.</p>
+      <div class="why-points">
+        <div class="why-point">
+          <div class="why-point-icon">🕐</div>
+          <div class="why-point-text">
+            <h4>Open 24 Hours, Every Day</h4>
+            <p>Your laptop crash doesn't keep office hours. Neither do we. Walk in anytime — day or night.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-point-icon">🔧</div>
+          <div class="why-point-text">
+            <h4>Chip-Level Expertise</h4>
+            <p>Most shops replace boards. We repair them. Saves you money and reduces electronic waste.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-point-icon">📋</div>
+          <div class="why-point-text">
+            <h4>Transparent Diagnosis First</h4>
+            <p>Free initial diagnosis. We tell you what's wrong and the cost before any work begins.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-point-icon">🛡️</div>
+          <div class="why-point-text">
+            <h4>Warranty on All Repairs</h4>
+            <p>Every repair comes with a service warranty. If an issue recurs, we fix it at no extra charge.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="trust-panel">
+      <div class="trust-panel-title">Service Status Dashboard</div>
+      <div class="trust-rows">
+        <div class="trust-row">
+          <div class="trust-dot"></div>
+          <div class="trust-row-label">Screen Replacement</div>
+          <div class="trust-badge">2–4 hrs</div>
+        </div>
+        <div class="trust-row">
+          <div class="trust-dot"></div>
+          <div class="trust-row-label">Virus Removal</div>
+          <div class="trust-badge">Same Day</div>
+        </div>
+        <div class="trust-row">
+          <div class="trust-dot"></div>
+          <div class="trust-row-label">Battery Replacement</div>
+          <div class="trust-badge">1–2 hrs</div>
+        </div>
+        <div class="trust-row">
+          <div class="trust-dot"></div>
+          <div class="trust-row-label">OS Reinstallation</div>
+          <div class="trust-badge">Same Day</div>
+        </div>
+        <div class="trust-row">
+          <div class="trust-dot"></div>
+          <div class="trust-row-label">Motherboard Repair</div>
+          <div class="trust-badge amber">1–3 Days</div>
+        </div>
+        <div class="trust-row">
+          <div class="trust-dot"></div>
+          <div class="trust-row-label">Data Recovery</div>
+          <div class="trust-badge amber">24–72 hrs</div>
+        </div>
+        <div class="trust-row">
+          <div class="trust-dot"></div>
+          <div class="trust-row-label">RAM / SSD Upgrade</div>
+          <div class="trust-badge">1 hr</div>
+        </div>
+      </div>
+      <div class="open-badge">
+        <div class="open-dot"></div>
+        <span>Open Now</span>
+        <small>— Available 24 hours</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="section-label">Customer Reviews</div>
+  <div class="section-title">What Bengaluru Says</div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"My laptop screen cracked and I was panicking before an important presentation. Walked in to A1 and they replaced it in 3 hours. Absolute lifesavers."</p>
+      <div class="review-author">
+        <div class="author-avatar">SR</div>
+        <div>
+          <div class="author-name">Suresh R.</div>
+          <div class="author-role">Software Engineer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Thought I had lost 5 years of photos from a dead hard drive. A1 recovered almost everything. Fair pricing and very honest about what they could and couldn't get back."</p>
+      <div class="review-author">
+        <div class="author-avatar">PM</div>
+        <div>
+          <div class="author-name">Priya M.</div>
+          <div class="author-role">Graphic Designer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Best motherboard repair in Bommanahalli. Other shops wanted to replace the whole board but A1 fixed the fault at chip level for a fraction of the cost."</p>
+      <div class="review-author">
+        <div class="author-avatar">AK</div>
+        <div>
+          <div class="author-name">Arjun K.</div>
+          <div class="author-role">Business Owner</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p class="review-text">"Speedy service, reasonable prices, and they explain everything clearly before starting work. No surprise charges. Will come back for sure."</p>
+      <div class="review-author">
+        <div class="author-avatar">NV</div>
+        <div>
+          <div class="author-name">Nandini V.</div>
+          <div class="author-role">Teacher</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Laptop was heating up and shutting off every 20 minutes. They cleaned the cooling system and replaced the thermal paste — runs like new now. Very professional."</p>
+      <div class="review-author">
+        <div class="author-avatar">RB</div>
+        <div>
+          <div class="author-name">Rajan B.</div>
+          <div class="author-role">Student</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"24-hour service is real — came in at 11 PM and they were fully operational. Got my keyboard replaced overnight. Impressive setup."</p>
+      <div class="review-author">
+        <div class="author-avatar">DS</div>
+        <div>
+          <div class="author-name">Deepak S.</div>
+          <div class="author-role">Freelancer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location" id="location">
+  <div class="location-inner">
+    <div>
+      <div class="section-label">Find Us</div>
+      <div class="section-title">We're in<br>Bommanahalli</div>
+      <p class="section-sub">Easy to reach from BTM Layout, Silk Board, and HSR Layout. Look for us near Zia Masjid.</p>
+      <div class="location-info">
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="info-label">Address</div>
+            <div class="info-val">20/1, Ground Floor, Virat Nagar,<br>9th Main Rd, 4th Cross Rd,<br>Near Zia Masjid, Bommanahalli,<br>Bengaluru, Karnataka 560068</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📞</div>
+          <div>
+            <div class="info-label">Phone</div>
+            <div class="info-val"><a href="tel:+919035188637">090351 88637</a></div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">💬</div>
+          <div>
+            <div class="info-label">WhatsApp</div>
+            <div class="info-val"><a href="https://wa.me/919035188637?text=Hi%2C%20I%20need%20help%20with%20my%20laptop%2Fcomputer" target="_blank">Chat on WhatsApp</a></div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🕐</div>
+          <div>
+            <div class="info-label">Hours</div>
+            <div class="info-val">Open 24 Hours — Every Day</div>
+          </div>
+        </div>
+        <a href="https://maps.google.com/?q=A1+Computer+Laptop+Service+Center,+Bommanahalli,+Bengaluru" target="_blank" class="btn-primary" style="align-self:flex-start; margin-top:0.5rem;">
+          🗺️ Get Directions
+        </a>
+      </div>
+    </div>
+    <div class="map-wrap">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.757519659617!2d77.6212!3d12.9115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xca0056e3a1a92d8f%3A0x3bae151ce3e39ffd!2sA1%20Computer%20Laptop%20Service%20Center!5e0!3m2!1sen!2sin!4v1750000000000!5m2!1sen!2sin"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="A1 Computer Laptop Service Center Map">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Device Not Working?<br>Call Us Right Now.</h2>
+  <p>Free diagnosis. Transparent pricing. Fixed fast.</p>
+  <div class="cta-actions">
+    <a href="tel:+919035188637" class="btn-primary">📞 090351 88637</a>
+    <a href="https://wa.me/919035188637?text=Hi%2C%20I%20need%20help%20with%20my%20laptop%2Fcomputer" target="_blank" class="btn-wa">💬 WhatsApp Us</a>
+    <a href="https://maps.google.com/?q=A1+Computer+Laptop+Service+Center,+Bommanahalli,+Bengaluru" target="_blank" class="btn-outline">📍 Get Directions</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">A<span>1</span> COMPUTER &amp; LAPTOP SERVICE CENTER</div>
+    <p style="margin-top:0.5rem;">20/1, Virat Nagar, Bommanahalli, Bengaluru 560068</p>
+  </div>
+  <div style="text-align:right;">
+    <p>📞 <a href="tel:+919035188637" style="color:var(--blue-light);text-decoration:none;">090351 88637</a></p>
+    <p style="margin-top:0.4rem;">💬 <a href="https://wa.me/919035188637?text=Hi%2C%20I%20need%20help%20with%20my%20laptop%2Fcomputer" target="_blank" style="color:#25D366;text-decoration:none;">WhatsApp Us</a></p>
+    <p style="margin-top:0.4rem;">🕐 Open 24 Hours · 7 Days a Week</p>
+  </div>
+</footer>
+
+</body>
+</html>
